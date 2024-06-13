@@ -18,16 +18,16 @@ void menuReportes(){
         system("cls");
         switch(opc){
         case 1:
-            vuelosPorcliente();
+//            vuelosPorcliente();
             break;
         case 2:
-            pasajesVendidosPorDestino();
+//            pasajesVendidosPorDestino();
             break;
         case 3:
-            destinoConMenorVentas();
+//            destinoConMenorVentas();
             break;
         case 4:
-            mesDeMayorRecaudacion();
+//            mesDeMayorRecaudacion();
             break;
         case 0:
             return;

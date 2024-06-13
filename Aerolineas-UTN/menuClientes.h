@@ -19,19 +19,19 @@ void menuClientes(){
         system("cls");
         switch(opc){
         case 1:
-            altaCliente();
+//            altaCliente();
             break;
         case 2:
-            modificarCliente();
+//            modificarCliente();
             break;
         case 3:
-            bajaCliente();
+//            bajaCliente();
             break;
         case 4:
-            buscarCliente();
+//            buscarCliente();
             break;
         case 5:
-            mostrarClientes();
+//            mostrarClientes();
             break;
         case 0:
             return;

@@ -1,6 +1,13 @@
 #include <iostream>
-
+#include <cstdlib>
+#include <cstring>
 using namespace std;
+
+#include "menuClientes.h"
+#include "menuCompra.h"
+#include "menuDestinos.h"
+#include "menuReportes.h"
+#include "menuVuelos.h"
 
 int main()
 {
