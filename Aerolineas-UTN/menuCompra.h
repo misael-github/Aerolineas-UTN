@@ -1,7 +1,7 @@
 #ifndef MENUCOMPRA_H_INCLUDED
 #define MENUCOMPRA_H_INCLUDED
 
-void compra(){
+void menuCompra(){
     int opc;
     while(true){
         system("cls");

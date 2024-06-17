@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="pruebasgitcode" />
+		<Option title="Aerolineas" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -32,7 +32,22 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ArcClientes.h" />
+		<Unit filename="ArcCompra.h" />
+		<Unit filename="ArcDestinos.h" />
+		<Unit filename="ArcReportes.h" />
+		<Unit filename="ArcVuelos.h" />
+		<Unit filename="clsClientes.h" />
+		<Unit filename="clsCompra.h" />
+		<Unit filename="clsDestinos.h" />
+		<Unit filename="clsReportes.h" />
+		<Unit filename="clsVuelos.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menuClientes.h" />
+		<Unit filename="menuCompra.h" />
+		<Unit filename="menuDestinos.h" />
+		<Unit filename="menuReportes.h" />
+		<Unit filename="menuVuelos.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

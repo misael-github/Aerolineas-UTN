@@ -3,6 +3,16 @@
 #include <cstring>
 using namespace std;
 
+#include "clsClientes.h"
+#include "clsCompra.h"
+#include "clsDestinos.h"
+#include "clsReportes.h"
+#include "clsVuelos.h"
+#include "ArcClientes.h"
+#include "ArcCompra.h"
+#include "ArcDestinos.h"
+#include "ArcReportes.h"
+#include "ArcVuelos.h"
 #include "menuClientes.h"
 #include "menuCompra.h"
 #include "menuDestinos.h"
@@ -40,7 +50,7 @@ int main()
                 menuCompra();
                 break;
             case 5:
-                reportes();
+                menuReportes();
           case 0:
                 return 0;
             default:
