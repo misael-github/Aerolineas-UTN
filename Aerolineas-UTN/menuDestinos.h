@@ -36,7 +36,6 @@ void menuDestinos(){
             break;
         case 0:
             return;
-            break;
         default:
             cout << "LA OPCION INGRESADA ES INCORRECTA, REINTENTE"<<endl;
             system("pause");

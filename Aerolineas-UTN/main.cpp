@@ -4,17 +4,14 @@
 using namespace std;
 
 #include "clsClientes.h"
-#include "clsCompra.h"
 #include "clsDestinos.h"
 #include "clsReportes.h"
 #include "clsVuelos.h"
 #include "ArcClientes.h"
-#include "ArcCompra.h"
 #include "ArcDestinos.h"
 #include "ArcReportes.h"
 #include "ArcVuelos.h"
 #include "menuClientes.h"
-#include "menuCompra.h"
 #include "menuDestinos.h"
 #include "menuReportes.h"
 #include "menuVuelos.h"

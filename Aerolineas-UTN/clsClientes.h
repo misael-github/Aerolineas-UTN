@@ -4,12 +4,12 @@ class Cliente
 {
     private:
         int _dni;
+        int _numTelefono;
+        int _edad;
+        char _email[50];
 
     public:
-        Cliente()
-        {
 
-        }
 
     };
 
