@@ -12,7 +12,7 @@ class ArchivoClientes{
         Cliente leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        int buscarRegistro(int num);
+        int buscarDNI(int dni);
 };
 
 void ArchivoClientes::limpiarArchivo(){
@@ -38,10 +38,10 @@ void ArchivoClientes::modificarRegistro(Cliente obj, int pos){
 
 Cliente ArchivoClientes::leerRegistro(int pos){
     Cliente obj;
-    obj.setNumero(-1);
+    obj.setDni(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
-        obj.setNumero(-2);
+        obj.setDni(-2);
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -69,12 +69,12 @@ void ArchivoClientes::listarArchivo(){
     }
 }
 
-int ArchivoClientes::buscarRegistro(int num){
+int ArchivoClientes::buscarDNI(int dni){
     int cant=contarRegistros();
     Cliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        if(num==obj.getNumero()){
+        if(dni==obj.getDni()){
             return i;
         }
     }

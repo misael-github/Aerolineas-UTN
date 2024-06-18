@@ -6,17 +6,18 @@ class Destinos
     private:
         int _numDestino;
         char _nombre[30];
-
+        bool _estado;
     public:
 
         void setNumDestino(int Dest);
         void setNombre(const char *n){strcpy(_nombre,n);}
+        void setEstado(bool est){_estado=est;}
 
         int getNumDestino(){return _numDestino;}
         const char *getNombre(){return _nombre;}
-
+        bool getEstado(){return _estado;}
         void Cargar();
-        void Mostrar():
+        void Mostrar();
 
 
 };

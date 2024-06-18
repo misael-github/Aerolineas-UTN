@@ -12,7 +12,7 @@ class ArchivoDestinos{
         Destinos leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        int buscarRegistro(int num);
+        int buscarDestino(int num);
 };
 
 void ArchivoDestinos::limpiarArchivo(){
@@ -38,10 +38,10 @@ void ArchivoDestinos::modificarRegistro(Destinos obj, int pos){
 
 Destinos ArchivoDestinos::leerRegistro(int pos){
     Destinos obj;
-    obj.setNumero(-1);
+    obj.setNumDestino(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
-        obj.setNumero(-2);
+        obj.setNumDestino(-2);
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -69,12 +69,12 @@ void ArchivoDestinos::listarArchivo(){
     }
 }
 
-int ArchivoDestinos::buscarRegistro(int num){
+int ArchivoDestinos::buscarDestino(int num){
     int cant=contarRegistros();
     Destinos obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        if(num==obj.getNumero()){
+        if(num==obj.getNumDestino()){
             return i;
         }
     }

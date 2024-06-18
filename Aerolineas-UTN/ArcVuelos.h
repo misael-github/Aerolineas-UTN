@@ -12,7 +12,7 @@ class ArchivoVuelos{
         Vuelos leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        int buscarRegistro(int num);
+        int buscarCodigo(int num);
 };
 
 void ArchivoVuelos::limpiarArchivo(){
@@ -38,10 +38,10 @@ void ArchivoVuelos::modificarRegistro(Vuelos obj, int pos){
 
 Vuelos ArchivoVuelos::leerRegistro(int pos){
     Vuelos obj;
-    obj.setNumero(-1);
+    obj.setCodigo(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
-        obj.setNumero(-2);
+        obj.setCodigo(-2);
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -69,12 +69,12 @@ void ArchivoVuelos::listarArchivo(){
     }
 }
 
-int ArchivoVuelos::buscarRegistro(int num){
+int ArchivoVuelos::buscarCodigo(int cod){
     int cant=contarRegistros();
     Vuelos obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        if(num==obj.getNumero()){
+        if(cod==obj.getCodigo()){
             return i;
         }
     }

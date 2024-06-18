@@ -3,18 +3,46 @@
 #include <cstring>
 using namespace std;
 
+void cargarCadena(char *palabra, int tamano){
+
+    int i=0;
+
+    fflush(stdin);
+
+    for (i=0; i<tamano; i++){
+
+        palabra[i]=cin.get();
+
+        if (palabra[i]=='\n'){
+
+            break;
+
+        }
+
+    }
+
+    palabra[i]='\0';
+
+    fflush(stdin);
+
+}
+
+#include "clsFecha.h"
 #include "clsClientes.h"
 #include "clsDestinos.h"
 #include "clsReportes.h"
 #include "clsVuelos.h"
+#include "clsVueloxCliente.h"
 #include "ArcClientes.h"
 #include "ArcDestinos.h"
 #include "ArcReportes.h"
 #include "ArcVuelos.h"
+#include "ArcVueloxCliente.h"
 #include "menuClientes.h"
 #include "menuDestinos.h"
 #include "menuReportes.h"
 #include "menuVuelos.h"
+#include "menuVueloxCliente.h"
 
 int main()
 {
@@ -44,7 +72,7 @@ int main()
                 menuDestinos();
                 break;
             case 4:
-                menuCompra();
+                menuVuelosxCliente();
                 break;
             case 5:
                 menuReportes();
