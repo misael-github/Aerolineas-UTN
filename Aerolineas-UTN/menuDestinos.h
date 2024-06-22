@@ -20,19 +20,19 @@ void menuDestinos(){
         system("cls");
         switch(opc){
         case 1:
-//            altaDestino();
+            altaDestino();
             break;
 //        case 2:
 //            modificarDestino();
             break;
         case 3:
-//            bajaDestino();
+            bajaDestino();
             break;
         case 4:
-//            buscarDestino();
+            buscarDestino();
             break;
         case 5:
-//            mostrarDestinos();
+            mostrarDestinos();
             break;
         case 0:
             return;

@@ -7,12 +7,13 @@ class ArchivoDestinos{
     public:
         ArchivoDestinos(const char *n="clientes.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        void grabarRegistro(Destinos obj);
-        void modificarRegistro(Destinos obj, int pos);
-        Destinos leerRegistro(int pos);
+        bool grabarRegistro(Destino obj);
+        bool modificarRegistro(Destino obj, int pos);
+        Destino leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        int buscarDestino(int num);
+        //int buscarDestino(int num);
+        int buscarNumeroDestino(int num);
 };
 
 void ArchivoDestinos::limpiarArchivo(){
@@ -21,23 +22,34 @@ void ArchivoDestinos::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoDestinos::grabarRegistro(Destinos obj){
+bool ArchivoDestinos::grabarRegistro(Destino obj){
     FILE *p=fopen(nombre, "ab");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
-
-void ArchivoDestinos::modificarRegistro(Destinos obj, int pos){
+void altaDestino()
+{
+    Destino obj;
+    ArchivoDestinos arcDesti;
+    obj.Cargar();
+    if(arcDesti.grabarRegistro(obj)){
+        cout << "¡DESTINO CREADO EXITOSAMENTE!"<<endl;
+        system("pause");
+    }
+}
+bool ArchivoDestinos::modificarRegistro(Destino obj, int pos){
     FILE *p=fopen(nombre, "rb+");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
 
-Destinos ArchivoDestinos::leerRegistro(int pos){
-    Destinos obj;
+Destino ArchivoDestinos::leerRegistro(int pos){
+    Destino obj;
     obj.setNumDestino(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
@@ -56,22 +68,26 @@ int ArchivoDestinos::contarRegistros(){
     fseek(p, 0, 2);
     int cantBytes=ftell(p);
     fclose(p);
-    return cantBytes/sizeof (Destinos);
+    return cantBytes/sizeof (Destino);
 }
 
 void ArchivoDestinos::listarArchivo(){
     int cant=contarRegistros();
-    Destinos obj;
+    Destino obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
         obj.Mostrar();
         if(obj.getEstado()==true){cout<<endl;}
     }
 }
+void mostrarDestinos(){
+    ArchivoDestinos archDesti;
+    archDesti.listarArchivo();
+}
 
-int ArchivoDestinos::buscarDestino(int num){
+int ArchivoDestinos::buscarNumeroDestino(int num){
     int cant=contarRegistros();
-    Destinos obj;
+    Destino obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
         if(num==obj.getNumDestino()){
@@ -80,7 +96,53 @@ int ArchivoDestinos::buscarDestino(int num){
     }
     return -1;
 }
+void buscarDestino(){
+    int pos;
+    ArchivoDestinos archDesti;
+    Destino obj;
+    int num;
+    cout << "INGRESE NUMERO DE DESTINO : "<<endl;
+    cin >> num;
+    pos =  archDesti.buscarNumeroDestino(num);
+    if(pos >= 0){
+        obj = archDesti.leerRegistro(pos);
+        obj.Mostrar();
 
+    }else{
+        cout << "NO SE ENCONTRÓ NINGUN DESTINO CON ESE NUMERO"<<endl;
+    }
+}
+void bajaDestino()
+{
+    ArchivoDestinos archDesti;
+    Destino obj;
+    int pos;
+    int num;
+    cout << "INGRESE EL NUMERO DE DESTINO A DAR DE BAJA : "<<endl;
+    cin >> num;
+    pos = archDesti.buscarNumeroDestino(num);
+    if(pos >= 0)
+    {
+        obj = archDesti.leerRegistro(pos);
+        obj.setEstado(false);
+        if(archDesti.modificarRegistro(obj,pos))
+        {
+            cout << "EL VUELO SE DIO DE BAJA CORRECTAMENTE"<<endl;
+            system("pause");
+        }
+        else
+        {
+            cout << "NO FUE POSIBLE DAR DE NAJA EL VUELO"<<endl;
+            system("pause");
+        }
 
+    }
+    else
+    {
+        cout << "NO SE ENCONTRÓ EL CODIGO DE VUELO"<<endl;
+        system("pause");
+    }
+
+}
 
 #endif // ARCDESTINOS_H_INCLUDED

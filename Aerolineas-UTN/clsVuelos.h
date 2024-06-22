@@ -1,12 +1,12 @@
 #ifndef CLSVUELOS_H_INCLUDED
 #define CLSVUELOS_H_INCLUDED
 
-class Vuelos
+class Vuelo
 {
     private:
         int _codigo;
         int _clase;
-        Destinos _destino;
+        Destino _destino;
         float _precio;
         char _horario[5];
         bool _estado;
@@ -15,14 +15,14 @@ class Vuelos
 
         void setCodigo(int cod);
         void setClase(int cl);
-        void setDestino(Destinos dest){_destino=dest;}
+        void setDestino(Destino dest){_destino=dest;}
         void setPrecio(float precio);
         void setHorario(const char *hr);
         void setEstado(bool est){_estado=est;}
 
         int getCodigo(){return _codigo;}
         int getClase(){return _clase;}
-        Destinos getDestino(){return _destino;}
+        Destino getDestino(){return _destino;}
         float getPrecio(){return _precio;}
         const char *getHorario(){return _horario;}
         bool getEstado(){return _estado;}
@@ -31,7 +31,7 @@ class Vuelos
         void Mostrar();
 };
 
-void Vuelos::Cargar()
+void Vuelo::Cargar()
 {
     _estado=true;
     int aux;
@@ -51,7 +51,7 @@ void Vuelos::Cargar()
 
 }
 
-void Vuelos::Mostrar()
+void Vuelo::Mostrar()
 {   if(_estado)
 {
 

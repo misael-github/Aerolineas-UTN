@@ -3,34 +3,11 @@
 #include <cstring>
 using namespace std;
 
-void cargarCadena(char *palabra, int tamano){
-
-    int i=0;
-
-    fflush(stdin);
-
-    for (i=0; i<tamano; i++){
-
-        palabra[i]=cin.get();
-
-        if (palabra[i]=='\n'){
-
-            break;
-
-        }
-
-    }
-
-    palabra[i]='\0';
-
-    fflush(stdin);
-
-}
-
+#include "cargarCadena.h"
 #include "clsFecha.h"
 #include "clsClientes.h"
-#include "clsDestinos.h"
 #include "clsReportes.h"
+#include "clsDestinos.h"
 #include "clsVuelos.h"
 #include "clsVueloxCliente.h"
 #include "ArcClientes.h"
