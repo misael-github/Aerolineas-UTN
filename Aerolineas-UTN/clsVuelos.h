@@ -13,11 +13,11 @@ class Vuelo
 
     public:
 
-        void setCodigo(int cod);
-        void setClase(int cl);
+        void setCodigo(int cod){_codigo = cod;}
+        void setClase(int cl){_clase = cl;}
         void setDestino(Destino dest){_destino=dest;}
-        void setPrecio(float precio);
-        void setHorario(const char *hr);
+        void setPrecio(float precio){_precio = precio;}
+        void setHorario(const char *hr){strcpy(_horario,hr);}
         void setEstado(bool est){_estado=est;}
 
         int getCodigo(){return _codigo;}
@@ -34,17 +34,17 @@ class Vuelo
 void Vuelo::Cargar()
 {
     _estado=true;
-    int aux;
-    float aux2;
+    //int aux;
+    //float aux2;
     cout<<"INGRESE EL CODIGO : ";
-    cin>>aux;
-    setCodigo(aux);
+    cin>>_codigo;
+    setCodigo(_codigo);
     cout<<"INGRESE LA CLASE : ";
-    cin>>aux;
-    setClase(aux);
+    cin>>_clase;
+    setClase(_clase);
     cout<<"INGRESE EL PRECIO : ";
-    cin>>aux2;
-    setPrecio(aux2);
+    cin>>_precio;
+    setPrecio(_precio);
     cout<<"INGRESE EL HORARIO : ";
     cargarCadena(_horario,4);
 

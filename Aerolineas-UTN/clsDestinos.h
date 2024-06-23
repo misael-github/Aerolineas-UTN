@@ -1,6 +1,7 @@
 #ifndef CLSDESTINOS_H_INCLUDED
 #define CLSDESTINOS_H_INCLUDED
 
+
 class Destino
 {
     private:
@@ -30,7 +31,7 @@ void Destino::Cargar()
     cin>>aux;
     setNumDestino(aux);
     cout<<"INGRESE EL NOMBRE DEL DESTINO : ";
-    CargarCadena(_nombre,29);
+    cargarCadena(_nombre,29);
 
 }
 
