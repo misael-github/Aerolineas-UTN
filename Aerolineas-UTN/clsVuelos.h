@@ -9,7 +9,7 @@ class Vuelo
         Destino _destino;
         int _numDestino;
         float _precio;
-        char _horario[5];
+        char _horario[6];
         bool _estado;
 
     public:
@@ -37,7 +37,7 @@ void Vuelo::Cargar()
 {
     //int aux;
     //float aux2;
-    cout<<"INGRESE EL CODIGO : ";
+    cout<<"INGRESE EL CODIGO DEL VUELO : ";
     cin>>_codigo;
     setCodigo(_codigo);
     cout<<"INGRESE LA CLASE (1, 2 o 3) : ";// NO FUNCIONA SI SE INGRESA UNA LETRA
@@ -49,7 +49,7 @@ void Vuelo::Cargar()
     cin>>_precio;
     setPrecio(_precio);
     cout<<"INGRESE EL HORARIO : ";
-    cargarCadena(_horario,4);
+    cargarCadena(_horario,5);
     _estado=true;
 
 
@@ -60,10 +60,11 @@ void Vuelo::Mostrar()
 {
 
 
-    cout<<"CODIGO : "<<_codigo<<endl;
+    cout<<"CODIGO DE VUELO : "<<_codigo<<endl;
     cout<<"CLASE : "<<_clase<<endl;
-    cout<<"PRECIO : "<<_precio<<endl;
-    cout<<"HORARIO : "<<_horario<<endl;
+    cout<<"NUMERO DESTINO : "<<_numDestino<<endl;
+    cout<<"PRECIO : $"<<_precio<<endl;
+    cout<<"HORARIO : "<<_horario<<"hs"<<endl;
 }
 }
 
