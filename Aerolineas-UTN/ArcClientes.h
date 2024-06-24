@@ -12,7 +12,7 @@ class ArchivoClientes{
         Cliente leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        int buscarDNI(const char *dni);
+        int buscarDNI(int dni);
         /*
         void altaCliente();
         void eliminarCliente();
@@ -43,11 +43,11 @@ void altaCliente()
     }
 }
 void eliminarCliente()
-{   char dni[8];
+{   int  dni;
     Cliente obj;
     ArchivoClientes arcObj;
     cout<<"INGRESE EL DNI DEL CLIENTE A DAR DE BAJA : ";
-    cargarCadena(dni,7);
+    cin>> dni ;
     int pos = arcObj.buscarDNI(dni);
     obj=arcObj.leerRegistro(pos);
     obj.setEstado(false);
@@ -68,10 +68,10 @@ void ArchivoClientes::modificarCliente(Cliente obj, int pos){
 
 Cliente ArchivoClientes::leerRegistro(int pos){
     Cliente obj;
-    obj.setDni("000000");
+    obj.setDni(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
-        obj.setDni("-111111");
+        obj.setDni(-2);
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -114,12 +114,12 @@ void mostrarClientes(){
     system("pause");
 }
 
-int ArchivoClientes::buscarDNI(const char *dni){
+int ArchivoClientes::buscarDNI(int dni){
     int cant=contarRegistros();
     Cliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        if(strcmp(dni,obj.getDni())== 0){
+        if(obj.getDni() == dni){
             return i;
         }
     }
@@ -129,9 +129,9 @@ void buscarCliente(){
     int pos;
     ArchivoClientes archCli;
     Cliente obj;
-    char dni[8];
+    int dni;
     cout << "INGRESE EL DNI DEL CLIENTE : "<<endl;
-    cargarCadena(dni,7);
+    cin>> dni;
     pos =  archCli.buscarDNI(dni);
     if(pos >= 0){
         obj = archCli.leerRegistro(pos);

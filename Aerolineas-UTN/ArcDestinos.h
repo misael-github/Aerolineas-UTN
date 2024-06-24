@@ -5,7 +5,7 @@ class ArchivoDestinos{
     private:
         char nombre[30];
     public:
-        ArchivoDestinos(const char *n="clientes.dat"){strcpy(nombre,n);}
+        ArchivoDestinos(const char *n="destinos.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
         bool grabarRegistro(Destino obj);
         bool modificarRegistro(Destino obj, int pos);
@@ -74,10 +74,18 @@ int ArchivoDestinos::contarRegistros(){
 void ArchivoDestinos::listarArchivo(){
     int cant=contarRegistros();
     Destino obj;
+    bool destinos  = false;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
+        if(obj.getEstado()){
         obj.Mostrar();
-        if(obj.getEstado()==true){cout<<endl;}
+        cout <<endl;
+        destinos = true;
+        }
+    }
+    if(destinos == false){
+        cout << "NO HAY DESTINOS REGISTRADOS " << endl;
+        system("pause");
     }
 }
 void mostrarDestinos(){
@@ -111,6 +119,7 @@ void buscarDestino(){
     }else{
         cout << "NO SE ENCONTRÓ NINGUN DESTINO CON ESE NUMERO"<<endl;
     }
+    system("pause");
 }
 void bajaDestino()
 {
@@ -127,22 +136,16 @@ void bajaDestino()
         obj.setEstado(false);
         if(archDesti.modificarRegistro(obj,pos))
         {
-            cout << "EL VUELO SE DIO DE BAJA CORRECTAMENTE"<<endl;
-            system("pause");
+            cout << "EL DESTINO SE DIO DE BAJA CORRECTAMENTE"<<endl;
+
         }
         else
         {
-            cout << "NO FUE POSIBLE DAR DE NAJA EL VUELO"<<endl;
-            system("pause");
+            cout << "NO FUE POSIBLE DAR DE BAJA EL DESTINO"<<endl;
         }
+            system("pause");
 
     }
-    else
-    {
-        cout << "NO SE ENCONTRÓ EL CODIGO DE VUELO"<<endl;
-        system("pause");
-    }
-
 }
 
 #endif // ARCDESTINOS_H_INCLUDED

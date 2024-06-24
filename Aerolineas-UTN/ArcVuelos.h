@@ -73,11 +73,20 @@ int ArchivoVuelos::contarRegistros(){
 void ArchivoVuelos::listarArchivo(){
     int cant=contarRegistros();
     Vuelo obj;
+    bool vuelos = false;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        obj.Mostrar();
-        if(obj.getEstado()==true){cout<<endl;}
+        if(obj.getEstado()){
+            obj.Mostrar();
+            vuelos = true;
+            cout<<endl;
+        }
     }
+     if(vuelos == false){
+        cout << "NO HAY VUELOS REGISTRADOS"<<endl;
+
+    }
+    system("pause");
 }
 void mostrarVuelos(){
     ArchivoVuelos archVuelos;
@@ -110,6 +119,7 @@ void buscarVuelo(){
     }else{
         cout << "NO SE ENCONTRÓ NINGUN VUELO CON ESE CODIGO"<<endl;
     }
+    system("pause");
 }
 
 void bajaVuelo()
@@ -132,17 +142,11 @@ void bajaVuelo()
         }
         else
         {
-            cout << "NO FUE POSIBLE DAR DE NAJA EL VUELO"<<endl;
+            cout << "NO FUE POSIBLE DAR DE BAJA EL VUELO"<<endl;
             system("pause");
         }
 
     }
-    else
-    {
-        cout << "NO SE ENCONTRÓ EL CODIGO DE VUELO"<<endl;
-        system("pause");
-    }
-
 }
 
 

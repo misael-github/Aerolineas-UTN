@@ -32,7 +32,7 @@ void Destino::Cargar()
     setNumDestino(aux);
     cout<<"INGRESE EL NOMBRE DEL DESTINO : ";
     cargarCadena(_nombre,29);
-
+    _estado = true;
 }
 
 void Destino::Mostrar()

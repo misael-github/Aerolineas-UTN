@@ -20,6 +20,8 @@ using namespace std;
 #include "menuReportes.h"
 #include "menuVuelos.h"
 #include "menuVueloxCliente.h"
+#include "menuConfiguraciones.h"
+#include "menuCompra.h"
 
 int main()
 {
@@ -32,7 +34,8 @@ int main()
         cout<<"2 - MENU VUELOS"<<endl;
         cout<<"3 - MENU DESTINOS"<<endl;
         cout<<"4 - COMPRAR"<<endl;
-        cout<<"5 - REPORTES"<<endl;
+        cout<<"6 - REPORTES"<<endl;
+        cout<<"7 - CONFIGURACIONES"<<endl;
         cout<<"0 - SALIR"<<endl;
         cout<<"----------------------------------------"<<endl;
         cout<<"INGRESE LA OPCION: ";
@@ -49,10 +52,17 @@ int main()
                 menuDestinos();
                 break;
             case 4:
-                menuVuelosxCliente();
+                 menuCompra();
                 break;
             case 5:
+                menuVuelosxCliente();
+                break;
+            case 6:
                 menuReportes();
+                break;
+            case 7:
+                menuConfiguraciones();
+                break;
           case 0:
                 return 0;
             default:

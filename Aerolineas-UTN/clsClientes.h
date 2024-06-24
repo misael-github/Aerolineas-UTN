@@ -3,7 +3,7 @@
 class Cliente
 {
     private:
-        char _dni[8];
+        int  _dni;
         char _nombre[15];
         char _apellido[15];
         char _numTelefono[10];
@@ -12,7 +12,7 @@ class Cliente
         bool _estado;
 
     public:
-        bool setDni(const char *dni);
+        bool setDni(int dni);
         void setNombre(const char *nom){strcpy(_nombre,nom);}
         void setApellido(const char *ape){strcpy(_apellido,ape);}
         void setNumTel(const char *tel);
@@ -20,7 +20,7 @@ class Cliente
         void setEmail(const char *email){strcpy(_email,email);}
         void setEstado(bool est){_estado=est;}
 
-        const char *getDni(){return _dni;}
+        int getDni(){return _dni;}
         const char *getNumTel(){return _numTelefono;}
         int getEdad(){return _edad;}
         const char *getEmail(){return _email;}
@@ -31,12 +31,10 @@ class Cliente
 
     };
 
-bool Cliente::setDni(const char *dni) // RECIBE UN VECTOR DE 8 POR ESO SIEMPRE ES VERDADERO
-{
-    if(strlen(dni)<= 8)
+bool Cliente::setDni(int dni) {
+    if(dni > 0)
     {
-        strcpy(_dni,dni);//
-        cout << strlen(dni)<<endl;
+        _dni = dni;
         return true;
     }
     return false;
@@ -64,14 +62,13 @@ void Cliente::Cargar()
 {
     int aux;
     //char a[10];
-    //char dni[8];
     cout<<"INGRESE EL NOMBRE : ";
     cargarCadena(_nombre,14);
     cout<<"INGRESE EL APELLIDO : ";
     cargarCadena(_apellido,14);
     cout<<"INGRESE EL NUMERO DE DNI : ";
-    cargarCadena(_dni,7);
-    if(setDni(_dni)){// DA SIEMPRE VERDADERO PORQUE EL VECTOR ES ESTATICO DE 8 POSICIONES
+    cin >> _dni;
+    setDni(_dni);
     cout<<"INGRESE EL NUMERO DE TELEFONO : ";
     cargarCadena(_numTelefono,9);
     setNumTel(_numTelefono);
@@ -81,11 +78,6 @@ void Cliente::Cargar()
     cout<<"INGRESE EL MAIL : ";
     cin>>_email;
     _estado = true;
-
-    }else{
-        cout << "DNI NO VALIDO, REINTENTAR"<<endl;
-
-    }
 
 }
 
