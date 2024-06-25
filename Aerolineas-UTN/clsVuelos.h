@@ -16,7 +16,7 @@ class Vuelo
 
         void setCodigo(int cod){_codigo = cod;}
         void setClase(int cl){_clase = cl;}
-        void setNumDestino(int des){_numDestino = des;}
+        //void setNumDestino(int des){_numDestino = des;}
         void setDestino(Destino dest){_destino=dest;}
         void setPrecio(float precio){_precio = precio;}
         void setHorario(const char *hr){strcpy(_horario,hr);}
@@ -60,9 +60,9 @@ void Vuelo::Mostrar()
 {
 
 
-    cout<<"CODIGO DE VUELO : "<<_codigo<<endl;
+    cout<<"CODIGO : "<<_codigo<<endl;
     cout<<"CLASE : "<<_clase<<endl;
-    cout<<"NUMERO DESTINO : "<<_numDestino<<endl;
+    //cout<<"DESTINO : "<<_numDestino<<endl;
     cout<<"PRECIO : $"<<_precio<<endl;
     cout<<"HORARIO : "<<_horario<<"hs"<<endl;
 }

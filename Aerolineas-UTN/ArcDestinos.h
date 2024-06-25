@@ -12,7 +12,7 @@ class ArchivoDestinos{
         Destino leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
-        //int buscarDestino(int num);
+        void buscarDestino();
         int buscarNumeroDestino(int num);
 };
 
@@ -85,8 +85,8 @@ void ArchivoDestinos::listarArchivo(){
     }
     if(destinos == false){
         cout << "NO HAY DESTINOS REGISTRADOS " << endl;
-        system("pause");
     }
+        system("pause");
 }
 void mostrarDestinos(){
     ArchivoDestinos archDesti;
