@@ -10,6 +10,7 @@ class Vuelo
         int _numDestino;
         float _precio;
         char _horario[6];
+        Fecha _fecha;
         bool _estado;
 
     public:
@@ -21,6 +22,7 @@ class Vuelo
         void setPrecio(float precio){_precio = precio;}
         void setHorario(const char *hr){strcpy(_horario,hr);}
         void setEstado(bool est){_estado=est;}
+        void setFecha(Fecha f){_fecha = f;}
 
         int getCodigo(){return _codigo;}
         int getClase(){return _clase;}
@@ -28,6 +30,7 @@ class Vuelo
         float getPrecio(){return _precio;}
         const char *getHorario(){return _horario;}
         bool getEstado(){return _estado;}
+        Fecha getFecha(){return _fecha;}
 
         void Cargar();
         void Mostrar();

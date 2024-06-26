@@ -5,18 +5,22 @@ class VuelosxCliente
 {
     private:
         int _dni;
-        int _NumAciento;
-        //int _NumVuelo;
+        int _NumAsiento;
         Fecha _fecha;
-        Vuelo vuelo;
+        int _codigoVuelo;
         bool estado;
     public:
        void setDni(int dni){_dni = dni;}
-       void Mostrar(){};
+       void setCodigoVuelo(int cod){_codigoVuelo = cod;}
+       void setFecha(Fecha f){_fecha = f;}
+
        bool getEstado(){return estado;}
        int getDni(){return _dni;}
-       void Mostrar();
+        Fecha getFecha(){return _fecha;}
+        int getCodigoVuelo(return _codigoVuelo;)
+       void Mostrar(){};
 };
+/*
 void VuelosxCliente::Mostrar(){
     cout << <<endl;
     cout << <<endl;
@@ -24,5 +28,6 @@ void VuelosxCliente::Mostrar(){
     cout << <<endl;
     cout << <<endl;
 }
+*/
 
 #endif // CLSVUELOXCLIENTE_H_INCLUDED

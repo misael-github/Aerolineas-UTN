@@ -28,7 +28,7 @@ void menuClientes(){
             eliminarCliente();
             break;
         case 4:
-            buscarCliente();
+            mostrarCliente();
             break;
         case 5:
             mostrarClientes();

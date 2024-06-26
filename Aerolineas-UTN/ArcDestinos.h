@@ -85,12 +85,13 @@ void ArchivoDestinos::listarArchivo(){
     }
     if(destinos == false){
         cout << "NO HAY DESTINOS REGISTRADOS " << endl;
-    }
         system("pause");
+    }
 }
 void mostrarDestinos(){
     ArchivoDestinos archDesti;
     archDesti.listarArchivo();
+    system("pause");
 }
 
 int ArchivoDestinos::buscarNumeroDestino(int num){

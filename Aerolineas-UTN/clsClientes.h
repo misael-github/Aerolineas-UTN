@@ -6,7 +6,7 @@ class Cliente
         int  _dni;
         char _nombre[15];
         char _apellido[15];
-        char _numTelefono[10];
+        char _numTelefono[11];
         int _edad;
         char _email[50];
         bool _estado;
@@ -68,10 +68,15 @@ void Cliente::Cargar()
     cargarCadena(_apellido,14);
     cout<<"INGRESE EL NUMERO DE DNI : ";
     cin >> _dni;
-    setDni(_dni);
+    if(setDni(_dni) == false){
+        cout << "DNI ERRONEO"<<endl;
+
+    }
+
     cout<<"INGRESE EL NUMERO DE TELEFONO : ";
-    cargarCadena(_numTelefono,9);
+    cargarCadena(_numTelefono,10);
     setNumTel(_numTelefono);
+
     cout<<"INGRESE LA EDAD : ";
     cin>>aux;
     setEdad(aux);
@@ -91,7 +96,7 @@ void Cliente::Mostrar()
     cout<<"NUMERO DE TELEFONO : "<<_numTelefono<<endl;
     cout<<"EDAD : "<<_edad<<endl;
     cout<<"EMAIL : "<<_email<<endl;
-    cout<<"estado : "<<_estado<<endl;
+
     }
 }
 

@@ -1,15 +1,24 @@
 #ifndef MENUCOMPRA_H_INCLUDED
 #define MENUCOMPRA_H_INCLUDED
 
-void resumenDeCompra(const char *nom, Vuelo obj);
+void resumenDeCompra(const char *nom, Vuelo obj, Cliente cliente);
+
 void menuCompra(){
+    Cliente cli;
+    int dni;
+    cout << "INGRESE EL DNI DEL CLIENTE : ";
+    cin >> dni;
+    ArchivoClientes archClie;
+    int pos = archClie.buscarDNI(dni);
+    if(pos >= 0){
+    cli = archClie.leerRegistro(pos);
     cout << "DESTINOS DISPONIBLES"<<endl;
     cout << "--------------"<<endl;
-    int destino;
+
+    int destino, pos;
     char nombre[30];
     ArchivoDestinos archDesti;
     Destino obj;
-    int pos;
     archDesti.listarArchivo();
 
     cout << "SELECCIONE EL NUMERO DE DESTINO : ";
@@ -43,11 +52,19 @@ void menuCompra(){
     cout << "SELECCIONE EL CODIGO DE VUELO : ";
     cin >> codigo;
     system("cls");
-    resumenDeCompra(nombre, objVuelo);
+
+    resumenDeCompra(nombre, objVuelo, cli);
+    }else{
+        cout << "NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;
+        system("pause");
+        return;
+    }
 
 }
-void resumenDeCompra(const char *nombre, Vuelo obj){
+void resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     cout << "--------- RESUMEN DE COMPRA --------"<<endl;
+    cout << "CLIENTE: "<<endl;
+    cliente.Mostrar();
     cout << "DESTINO SELECCIONADO: "<<endl<<nombre<<endl;
     cout << "VUELO: "<<endl;
     obj.Mostrar();
@@ -56,8 +73,12 @@ void resumenDeCompra(const char *nombre, Vuelo obj){
     cout << "¿CONFIRMA COMPRA?"<<endl;
     cout << "1- SI "<< " 2- NO"<<endl;
     cin >> confirma;
+    ArchivoVueloxCliente archVuelosCliente;
+    VuelosxCliente vueloCliente;
     if(confirma == 1){
-        ArchivoVueloxCliente archVuelosCliente;
+        vueloCliente.setDni(cliente.getDni());
+        vueloCliente.setCodigoVuelo(obj.getCodigo());
+        archVuelosCliente.grabarRegistro(vueloCliente);
 
     }
     system("pause");

@@ -13,6 +13,7 @@ class ArchivoClientes{
         void listarArchivo();
         int contarRegistros();
         int buscarDNI(int dni);
+        void mostrarCliente();
         /*
         void altaCliente();
         void eliminarCliente();
@@ -53,7 +54,7 @@ void eliminarCliente()
     obj.setEstado(false);
     arcObj.modificarCliente(obj,pos);
     cout<<"EL CLIENTE SE DIO DE BAJA."<<endl;
-    system("pause");
+    //system("pause");
 
 }
 
@@ -78,6 +79,17 @@ Cliente ArchivoClientes::leerRegistro(int pos){
     fread(&obj, sizeof obj, 1, p);
     fclose(p);
     return obj;
+}
+int ArchivoClientes::buscarDNI(int dni){
+    int cant=contarRegistros();
+    Cliente obj;
+    for(int i=0; i<cant; i++){
+        obj=leerRegistro(i);
+        if(obj.getDni() == dni){
+            return i;
+        }
+    }
+    return -1;
 }
 
 int ArchivoClientes::contarRegistros(){
@@ -114,18 +126,9 @@ void mostrarClientes(){
     system("pause");
 }
 
-int ArchivoClientes::buscarDNI(int dni){
-    int cant=contarRegistros();
-    Cliente obj;
-    for(int i=0; i<cant; i++){
-        obj=leerRegistro(i);
-        if(obj.getDni() == dni){
-            return i;
-        }
-    }
-    return -1;
-}
-void buscarCliente(){
+
+
+void mostrarCliente(){
     int pos;
     ArchivoClientes archCli;
     Cliente obj;
@@ -136,11 +139,13 @@ void buscarCliente(){
     if(pos >= 0){
         obj = archCli.leerRegistro(pos);
         obj.Mostrar();
+        cout<<"cli"<<endl;
         system("pause");
 
     }else{
         cout << "NO SE ENCONTRÓ CLIENTE CON ESE DNI"<<endl;
     }
 }
+
 
 #endif // ARCCLIENTES_H_INCLUDED

@@ -7,7 +7,7 @@ class ArchivoVueloxCliente{
     public:
         ArchivoVueloxCliente(const char *n="vuelosxcliente.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        void grabarRegistro(VuelosxCliente obj);
+        bool grabarRegistro(VuelosxCliente obj);
         void modificarRegistro(VuelosxCliente obj, int pos);
         VuelosxCliente leerRegistro(int pos);
         void listarArchivo();
@@ -21,11 +21,12 @@ void ArchivoVueloxCliente::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
+bool ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
     FILE *p=fopen(nombre, "ab");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
 
 void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
