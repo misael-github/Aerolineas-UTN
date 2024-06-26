@@ -69,7 +69,6 @@ void ArchivoVueloxCliente::listarArchivo(){
         if(obj.getEstado()==true){cout<<endl;}
     }
 }
-
 int ArchivoVueloxCliente::buscarRegistro(int num){
     int cant=contarRegistros();
     VuelosxCliente obj;

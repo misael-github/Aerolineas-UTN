@@ -17,6 +17,7 @@ using namespace std;
 #include "ArcVueloxCliente.h"
 #include "menuClientes.h"
 #include "menuDestinos.h"
+#include "Reportes.h"
 #include "menuReportes.h"
 #include "menuVuelos.h"
 #include "menuVueloxCliente.h"
@@ -34,8 +35,8 @@ int main()
         cout<<"2 - MENU VUELOS"<<endl;
         cout<<"3 - MENU DESTINOS"<<endl;
         cout<<"4 - COMPRAR"<<endl;
-        cout<<"6 - REPORTES"<<endl;
-        cout<<"7 - CONFIGURACIONES"<<endl;
+        cout<<"5 - REPORTES"<<endl;
+        cout<<"6 - CONFIGURACIONES"<<endl;
         cout<<"0 - SALIR"<<endl;
         cout<<"----------------------------------------"<<endl;
         cout<<"INGRESE LA OPCION: ";
@@ -54,13 +55,15 @@ int main()
             case 4:
                  menuCompra();
                 break;
+                /*
             case 5:
-                menuVuelosxCliente();
+               // menuVuelosxCliente();
                 break;
-            case 6:
+                */
+            case 5:
                 menuReportes();
                 break;
-            case 7:
+            case 6:
                 menuConfiguraciones();
                 break;
           case 0:

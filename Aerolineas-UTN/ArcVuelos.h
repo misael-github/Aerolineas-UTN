@@ -29,11 +29,22 @@ bool ArchivoVuelos::grabarRegistro(Vuelo obj){
     return true;
 }
 void altaVuelo(){
+    /// TENGO QUE VERIFICAR QUE EXISTA EL DESTINO PRIMERO
     ArchivoVuelos archVuelos;
     Vuelo obj;
+    ArchivoDestinos archDestinos;
     obj.Cargar();
+
+    if(archDestinos.buscarNumeroDestino(obj.getDestino().getNumDestino()) >= 0){
     if(archVuelos.grabarRegistro(obj)){
         cout << "¡VUELO CARGADO CON EXITO!"<<endl;
+        }else{
+            cout << "ERROR AL CARGAR VUELO, REINTENTE"<<endl;
+        }
+        system("pause");
+
+    }else{
+        cout << "EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS"<<endl;
         system("pause");
     }
 

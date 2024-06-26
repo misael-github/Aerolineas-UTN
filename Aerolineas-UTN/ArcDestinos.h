@@ -146,6 +146,9 @@ void bajaDestino()
         }
             system("pause");
 
+    }else{
+        cout << "NO EXISTE EL DESTINO"<<endl;
+        system("pause");
     }
 }
 

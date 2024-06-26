@@ -21,16 +21,15 @@ class VuelosxCliente
         Fecha getFecha(){return _fecha;}
         int getCodigoVuelo(){return _codigoVuelo;}
         Destino getDestino(){return _destino;}
-       void Mostrar(){};
+       void Mostrar();
 };
-/*
+
 void VuelosxCliente::Mostrar(){
-    cout << <<endl;
-    cout << <<endl;
-    cout << <<endl;
-    cout << <<endl;
-    cout << <<endl;
+    cout << "DNI: "<<_dni<<endl;
+    cout << "CODIGO DE VUELO: "<<_codigoVuelo<<endl;
+    cout << "FECHA: "<<_fecha.getDia()<<"/"<<_fecha.getMes()<<"/"<<_fecha.getAnio()<<endl;
+    cout << "DESTINO: "<<_destino.getNombre()<<endl;
 }
-*/
+
 
 #endif // CLSVUELOXCLIENTE_H_INCLUDED

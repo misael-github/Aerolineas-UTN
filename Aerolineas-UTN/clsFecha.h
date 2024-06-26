@@ -101,7 +101,7 @@ void Fecha::setDia(int dia)
 
 void Fecha::Cargar()
 {   int aux;
-    cout<<"INGRESE UN DIA : ";
+    cout<<"INGRESE DIA : ";
     cin>>aux;
     setDia(aux);
     cout<<"INGRESE MES : ";
