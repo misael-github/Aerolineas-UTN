@@ -104,10 +104,10 @@ void Fecha::Cargar()
     cout<<"INGRESE UN DIA : ";
     cin>>aux;
     setDia(aux);
-    cout<<"INGRESE UN MES : ";
+    cout<<"INGRESE MES : ";
     cin>>aux;
     setMes(aux);
-    cout<<"INGRESE UN ANIO : ";
+    cout<<"INGRESE ANIO : ";
     cin>>aux;
     setAnio(aux);
 }

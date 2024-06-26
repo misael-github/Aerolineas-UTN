@@ -7,7 +7,7 @@ class Vuelo
         int _codigo;
         int _clase;
         Destino _destino;
-        int _numDestino;
+       // int _numDestino;
         float _precio;
         char _horario[6];
         Fecha _fecha;
@@ -26,7 +26,7 @@ class Vuelo
 
         int getCodigo(){return _codigo;}
         int getClase(){return _clase;}
-        int getNumDestino(){return _numDestino;}
+        Destino getDestino(){return _destino;}
         float getPrecio(){return _precio;}
         const char *getHorario(){return _horario;}
         bool getEstado(){return _estado;}
@@ -46,11 +46,11 @@ void Vuelo::Cargar()
     cout<<"INGRESE LA CLASE (1, 2 o 3) : ";// NO FUNCIONA SI SE INGRESA UNA LETRA
     cin>>_clase;
     setClase(_clase);
-    cout << "INGRESE EL NUMERO DE DESTINO : ";
-    cin >> _numDestino;
+    _destino.Cargar();
     cout<<"INGRESE EL PRECIO : ";
     cin>>_precio;
     setPrecio(_precio);
+    _fecha.Cargar();
     cout<<"INGRESE EL HORARIO : ";
     cargarCadena(_horario,5);
     _estado=true;
@@ -67,7 +67,9 @@ void Vuelo::Mostrar()
     cout<<"CLASE : "<<_clase<<endl;
     //cout<<"DESTINO : "<<_numDestino<<endl;
     cout<<"PRECIO : $"<<_precio<<endl;
+    cout<<"FECHA : "<<_fecha.getDia()<<"/"<<_fecha.getMes()<<"/"<<_fecha.getAnio()<<endl;
     cout<<"HORARIO : "<<_horario<<"hs"<<endl;
+    cout<<"DESTINO : "<<_destino.getNombre()<<endl;
 }
 }
 

@@ -35,7 +35,7 @@ void menuCompra(){
     bool encontrado = false;
     for(int i = 0; i < cant ;i++){
         objVuelo = archVuelos.leerRegistro(i);
-        if(destino == objVuelo.getNumDestino() && objVuelo.getEstado()){
+        if(destino == objVuelo.getDestino().getNumDestino() && objVuelo.getEstado()){
             objVuelo.Mostrar();
             //cout << "DESTINO "<< obj.getNombre();
             strcpy(nombre,obj.getNombre());
@@ -78,6 +78,8 @@ void resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     if(confirma == 1){
         vueloCliente.setDni(cliente.getDni());
         vueloCliente.setCodigoVuelo(obj.getCodigo());
+        vueloCliente.setFecha(obj.getFecha());
+        vueloCliente.setDestino(obj.getDestino());
         archVuelosCliente.grabarRegistro(vueloCliente);
 
     }
