@@ -38,10 +38,10 @@ void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
 
 VuelosxCliente ArchivoVueloxCliente::leerRegistro(int pos){
     VuelosxCliente obj;
-    obj.setNumero(-1);
+    obj.setNumeroV(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
-        obj.setNumero(-2);
+        obj.setNumeroV(-2);
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -74,11 +74,24 @@ int ArchivoVueloxCliente::buscarRegistro(int num){
     VuelosxCliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        if(num==obj.getNumero()){
+        if(num==obj.getNumeroV()){
             return i;
         }
     }
     return -1;
+}
+
+void VuelosxCliente::setDni(int dni)
+{
+    ArchivoClientes arcC;
+    Cliente objC;
+    int contReg=arcC.contarRegistros();
+
+    for (int i=0;i<contReg;i++)
+    {
+
+    }
+
 }
 
 

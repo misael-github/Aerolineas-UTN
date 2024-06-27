@@ -54,6 +54,7 @@ void Cliente::setEdad(int edad)
 
 void Cliente::Cargar()
 {
+    _estado=true;
     int aux;
     char a[10];
     cout<<"INGRESE EL NUMERO DE DNI : ";
@@ -71,10 +72,12 @@ void Cliente::Cargar()
 
 void Cliente::Mostrar()
 {
+    if(_estado){
     cout<<"DNI : "<<_dni<<endl;
     cout<<"NUMERO DE TELEFONO : "<<_numTelefono<<endl;
     cout<<"EDAD : "<<_edad<<endl;
     cout<<"EMAIL : "<<_email<<endl;
+    }
 }
 
 #endif // CLSCLIENTES_H_INCLUDED

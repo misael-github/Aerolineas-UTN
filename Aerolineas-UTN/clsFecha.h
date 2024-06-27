@@ -84,8 +84,7 @@ void Fecha::setMes(int mes)
 }
 
 void Fecha::setDia(int dia)
-{   bool validar=false;
-   if(dia>0&&dia<32)
+{  if(dia>0&&dia<32)
    {
        _d=dia;
    }

@@ -23,19 +23,22 @@ class Destinos
 };
 
 void Destinos::Cargar()
-{   int aux;
+{   _estado=true;
+    int aux;
     cout<<"INGRESE UN NUMERO DE DESTINO : ";
     cin>>aux;
     setNumDestino(aux);
     cout<<"INGRESE EL NOMBRE DEL DESTINO : ";
-    CargarCadena(_nombre,29);
+    cargarCadena(_nombre,29);
 
 }
 
 void Destinos::Mostrar()
 {
+    if(_estado){
     cout<<"NUMERO DE DESTINO : "<<_numDestino<<endl;
     cout<<"NOMBRE DEL DESTINO : "<<_nombre<<endl;
+    }
 }
 
 

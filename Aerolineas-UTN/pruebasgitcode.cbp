@@ -43,6 +43,7 @@
 		<Unit filename="clsReportes.h" />
 		<Unit filename="clsVuelos.h" />
 		<Unit filename="clsVueloxCliente.h" />
+		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menuClientes.h" />
 		<Unit filename="menuDestinos.h" />
