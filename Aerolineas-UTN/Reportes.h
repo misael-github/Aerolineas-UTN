@@ -39,7 +39,7 @@ void ponerEnceroVector(int *destinos,int cant){
         destinos[i] = 0;
     }
 }
-void contarPasajesVendidosPorDestino(int *destinos){
+int contarPasajesVendidosPorDestino(int *destinos){
 
         ArchivoVueloxCliente archiVuelosComprados;
         VuelosxCliente obj;
@@ -52,8 +52,33 @@ void contarPasajesVendidosPorDestino(int *destinos){
 
 }
 void pasajesVendidosPorDestino(){
+        ArchivoDestinos archDesti;
+        int cantReg  = archDesti.contarRegistros();
+        int *destinos = new int[cantReg];
+        if(destinos == nullptr){
+        cout << "ERROR DE ASIGNACION DE MEMORIA"<<endl;
+        return ;
+        }
+        ponerEnceroVector(destinos,cantReg);
 
-    ArchivoDestinos archDesti;
+        contarPasajesVendidosPorDestino(destinos);
+        mostrarVector(destinos,cantReg);
+        system("pause");
+
+        delete destinos;
+
+}
+int buscarMenor(int *vec, int tam){
+    int pos = 0;
+    for(int i=1; i <= tam; i++){
+        if(vec[i] < vec[pos] ){
+            pos = i;
+        }
+    }
+    return pos;
+}
+void destinoConMenorVentas(){
+ ArchivoDestinos archDesti;
     int cantReg  = archDesti.contarRegistros();
     int *destinos = new int[cantReg];
     if(destinos == nullptr){
@@ -61,14 +86,18 @@ void pasajesVendidosPorDestino(){
         return;
     }
     ponerEnceroVector(destinos,cantReg);
-    contarPasajesVendidosPorDestino(destinos);
 
-    mostrarVector(destinos,cantReg);
+    ArchivoVueloxCliente archiVuelosComprados;
+    VuelosxCliente obj;
+    int cantCompras = archiVuelosComprados.contarRegistros();
+    for(int i=0; i < cantCompras;i++){
+    obj = archiVuelosComprados.leerRegistro(i);
+    int numDestino = obj.getDestino().getNumDestino();
+    destinos[numDestino -1]++;
+
+    }
+    int pos = buscarMenor(destinos, cantReg);
+    cout << "EL DESTINO CON MENOR CANTIDAD DE PASAJES VENDIDOS ES EL "<< pos + 1<<endl;
     system("pause");
-    delete destinos;
-
-}
-void destinoConMenorVentas(){
-
 }
 #endif // REPORTES_H_INCLUDED
