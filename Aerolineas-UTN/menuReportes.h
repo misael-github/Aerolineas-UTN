@@ -21,7 +21,7 @@ void menuReportes(){
             vueloCliente();
             break;
         case 2:
-//            pasajesVendidosPorDestino();
+            pasajesVendidosPorDestino();
             break;
         case 3:
 //            destinoConMenorVentas();

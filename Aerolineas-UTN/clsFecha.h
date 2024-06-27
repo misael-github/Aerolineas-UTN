@@ -1,5 +1,28 @@
 #ifndef CLSFECHA_H_INCLUDED
 #define CLSFECHA_H_INCLUDED
+
+#include <chrono>
+#include <ctime>
+
+// Obtener el tiempo actual del sistema
+    auto now = chrono::system_clock::now();
+    time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+    tm* local_time = std::localtime(&now_time);
+
+    // Obtener los componentes de la fecha actual
+    int year = local_time->tm_year + 1900;   // Ajuste para el año real
+    int month = local_time->tm_mon + 1;
+    int day = local_time->tm_mday;
+    int hour = local_time->tm_hour;
+    int min = local_time->tm_min;
+    int sec = local_time->tm_sec;
+
+    //cout << "Fecha y hora actual: ";
+    //cout << year << '-' << month << '-' << day << ' ' << hour << ':' << min << ':' << sec <<endl;
+
+
+
 class Fecha
 {
 private:
@@ -12,6 +35,7 @@ public:
       _d=dia;
       _m=mes;
       _a=anio;
+
     }
 
     void setDia(int dia);
@@ -21,6 +45,9 @@ public:
     int getDia(){return _d;}
     int getMes(){return _m;}
     int getAnio(){return _a;}
+    int getAnioActual(){return year;}
+    int getMesActual(){return month;}
+    int getDiaActual(){return day;}
 
     void Cargar();
     void Mostrar();
@@ -29,7 +56,7 @@ public:
 
 void Fecha::setAnio(int anio)
 {
-    if(anio>1900&&anio<2025)
+    if(anio>=getAnioActual()&&anio<2026)
     {
         _a=anio;
     }
@@ -46,12 +73,12 @@ void Fecha::setAnio(int anio)
 
 void Fecha::setMes(int mes)
 {   bool validar=false;
-    if(mes>0&&mes<13)
+    if(mes>0 &&mes<13)
     {
        if(mes==1 || mes==3 || mes==5 || mes<9 && mes>6 || mes==10 || mes==12)
        {
 
-    if(getDia()>0&&getDia()<32)
+    if(getDia()>0  && getDia()<32)
     {
         validar=true;
         _m=mes;
@@ -64,9 +91,9 @@ void Fecha::setMes(int mes)
             _m=mes;
         }
     }
-    else if(mes==2)
+    else if(mes==2 )
     {
-        if(getDia()>0&&getDia()<30)
+        if(getDia()>0 && getDia() >= day &&getDia()<30)
         {
             validar=true;
             _m=mes;

@@ -43,7 +43,7 @@ void altaVuelo(){
         }
         system("pause");
 
-    }else{
+    }else{/// SERIA BUENO QUE LO DIGA APENAS SE CARGAR EL DESTINO
         cout << "EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS"<<endl;
         system("pause");
     }

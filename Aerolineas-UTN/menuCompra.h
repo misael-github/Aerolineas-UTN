@@ -37,7 +37,7 @@ void menuCompra(){
     /// SI NO EXISTE UN VUELO CARGADO PARA EL DESTINO QUE SELECCIONO NO ME DEJA COMPRAR
     for(int i = 0; i < cant ;i++){
         objVuelo = archVuelos.leerRegistro(i);
-        if(destino == objVuelo.getDestino().getNumDestino() && objVuelo.getEstado()){
+        if(obj.getNumDestino() == objVuelo.getDestino().getNumDestino() && objVuelo.getEstado()){
             objVuelo.Mostrar();
             strcpy(nombre,obj.getNombre());
             encontrado = true;
@@ -83,13 +83,13 @@ bool resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     cout << "1- SI "<< " 2- NO"<<endl;
     cin >> confirma;
     ArchivoVueloxCliente archVuelosCliente;
-    VuelosxCliente vueloCliente;
+    VuelosxCliente compra;
     if(confirma == 1){
-        vueloCliente.setDni(cliente.getDni());
-        vueloCliente.setCodigoVuelo(obj.getCodigo());
-        vueloCliente.setFecha(obj.getFecha());
-        vueloCliente.setDestino(obj.getDestino());
-        if(archVuelosCliente.grabarRegistro(vueloCliente)){
+        compra.setDni(cliente.getDni());
+        compra.setCodigoVuelo(obj.getCodigo());
+        compra.setFecha(obj.getFecha());
+        compra.setDestino(obj.getDestino());
+        if(archVuelosCliente.grabarRegistro(compra)){
             return true;
         }
 

@@ -46,7 +46,7 @@ void Vuelo::Cargar()
     cout<<"INGRESE LA CLASE (1, 2 o 3) : ";// NO FUNCIONA SI SE INGRESA UNA LETRA
     cin>>_clase;
     setClase(_clase);
-    _destino.Cargar();
+    _destino.Cargar();///ERROR PORQUE EL NOMBRE QUE CARGO NO NECESARIAMENTE COINCIDE CON EL NOMBRE QUE ESTA EN EL ARCHIVO DESTINOs
     cout<<"INGRESE EL PRECIO : ";
     cin>>_precio;
     setPrecio(_precio);
