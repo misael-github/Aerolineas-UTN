@@ -24,7 +24,7 @@ void menuReportes(){
             pasajesVendidosPorDestino();
             break;
         case 3:
-//            destinoConMenorVentas();
+            destinoConMenorVentas();
             break;
         case 4:
 //            mesDeMayorRecaudacion();

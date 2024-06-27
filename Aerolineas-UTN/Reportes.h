@@ -39,11 +39,20 @@ void ponerEnceroVector(int *destinos,int cant){
         destinos[i] = 0;
     }
 }
+void contarPasajesVendidosPorDestino(int *destinos){
+
+        ArchivoVueloxCliente archiVuelosComprados;
+        VuelosxCliente obj;
+        int cantCompras = archiVuelosComprados.contarRegistros();
+        for(int i=0; i < cantCompras;i++){
+        obj = archiVuelosComprados.leerRegistro(i);
+        int numDestino = obj.getDestino().getNumDestino();
+        destinos[numDestino -1]++;
+    }
+
+}
 void pasajesVendidosPorDestino(){
-    //Destino des;
-    ArchivoVueloxCliente archiVuelosComprados;
-    VuelosxCliente obj;
-    int cantCompras = archiVuelosComprados.contarRegistros();
+
     ArchivoDestinos archDesti;
     int cantReg  = archDesti.contarRegistros();
     int *destinos = new int[cantReg];
@@ -52,19 +61,14 @@ void pasajesVendidosPorDestino(){
         return;
     }
     ponerEnceroVector(destinos,cantReg);
-    //int tam = 0;
-
-        for(int i=0; i < cantCompras;i++){
-        obj = archiVuelosComprados.leerRegistro(i);
-        int numDestino = obj.getDestino().getNumDestino();
-        destinos[numDestino -1]++;
-        //tam++;
-    }
+    contarPasajesVendidosPorDestino(destinos);
 
     mostrarVector(destinos,cantReg);
     system("pause");
     delete destinos;
 
 }
+void destinoConMenorVentas(){
 
+}
 #endif // REPORTES_H_INCLUDED
