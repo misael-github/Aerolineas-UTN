@@ -4,11 +4,14 @@ class Reportes
 {
     private:
         bool _estado;
+        int numero;
 
     public:
-
+        void setNumero(int num){numero = num;}
         void setEstado(bool estado){_estado=estado;}
         bool getEstado(){return _estado;}
+        int getNumero(){return numero;}
+        Mostrar(){};
 };
 
 

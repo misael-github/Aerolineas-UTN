@@ -10,7 +10,8 @@ void menuReportes(){
         cout << "1- BUSCAR VUELOS POR CLIENTE"<<endl;
         cout << "2- CANTIDAD DE PASAJES VENDIDOS POR DESTINO"<<endl;
         cout << "3- DESTINO CON MENOR CANTIDAD DE PASAJES VENDIDOS"<<endl;
-        cout << "4- MES CON MAYOR RECAUDACIÓN"<<endl;
+        cout << "4- MES CON MAYOR RECAUDACION"<<endl;
+        cout << "5- LISTAR TODAS LAS COMPRAS"<<endl;
         cout << "0- VOLVER AL MENU PRINCIPAL"<<endl;
         cout << "----------------"<<endl;
         cout << "INGRESE UNA OPCION: ";
@@ -18,16 +19,19 @@ void menuReportes(){
         system("cls");
         switch(opc){
         case 1:
-//            vuelosPorcliente();
+            vueloCliente();
             break;
         case 2:
-//            pasajesVendidosPorDestino();
+            pasajesVendidosPorDestino();
             break;
         case 3:
-//            destinoConMenorVentas();
+            destinoConMenorVentas();
             break;
         case 4:
-//            mesDeMayorRecaudacion();
+            mesDeMayorRecaudacion();
+            break;
+        case 5:
+            listarCompras();
             break;
         case 0:
             return;

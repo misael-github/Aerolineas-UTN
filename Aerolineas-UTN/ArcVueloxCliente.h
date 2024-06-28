@@ -7,7 +7,7 @@ class ArchivoVueloxCliente{
     public:
         ArchivoVueloxCliente(const char *n="vuelosxcliente.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        void grabarRegistro(VuelosxCliente obj);
+        bool grabarRegistro(VuelosxCliente obj);
         void modificarRegistro(VuelosxCliente obj, int pos);
         VuelosxCliente leerRegistro(int pos);
         void listarArchivo();
@@ -21,11 +21,12 @@ void ArchivoVueloxCliente::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
+bool ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
     FILE *p=fopen(nombre, "ab");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
 
 void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
@@ -38,10 +39,17 @@ void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
 
 VuelosxCliente ArchivoVueloxCliente::leerRegistro(int pos){
     VuelosxCliente obj;
+<<<<<<< HEAD
     obj.setNumeroV(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
         obj.setNumeroV(-2);
+=======
+    obj.setDni(-1);
+    FILE *p=fopen(nombre, "rb");
+    if(p==NULL){
+        obj.setDni(-2);
+>>>>>>> 2986cb9d63d4802e1f0d97a0a0391d447626606c
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -68,13 +76,16 @@ void ArchivoVueloxCliente::listarArchivo(){
         if(obj.getEstado()==true){cout<<endl;}
     }
 }
-
 int ArchivoVueloxCliente::buscarRegistro(int num){
     int cant=contarRegistros();
     VuelosxCliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
+<<<<<<< HEAD
         if(num==obj.getNumeroV()){
+=======
+        if(num==obj.getDni()){
+>>>>>>> 2986cb9d63d4802e1f0d97a0a0391d447626606c
             return i;
         }
     }

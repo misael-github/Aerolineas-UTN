@@ -7,9 +7,9 @@ class ArchivoVuelos{
     public:
         ArchivoVuelos(const char *n="vuelos.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        void grabarRegistro(Vuelos obj);
-        void modificarRegistro(Vuelos obj, int pos);
-        Vuelos leerRegistro(int pos);
+        bool grabarRegistro(Vuelo obj);
+        bool modificarRegistro(Vuelo obj, int pos);
+        Vuelo leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
         int buscarCodigo(int num);
@@ -21,23 +21,45 @@ void ArchivoVuelos::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoVuelos::grabarRegistro(Vuelos obj){
+bool ArchivoVuelos::grabarRegistro(Vuelo obj){
     FILE *p=fopen(nombre, "ab");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
+void altaVuelo(){
+    /// TENGO QUE VERIFICAR QUE EXISTA EL DESTINO PRIMERO
+    ArchivoVuelos archVuelos;
+    Vuelo obj;
+    ArchivoDestinos archDestinos;
+    obj.Cargar();
 
-void ArchivoVuelos::modificarRegistro(Vuelos obj, int pos){
+    if(archDestinos.buscarNumeroDestino(obj.getDestino().getNumDestino()) >= 0){
+    if(archVuelos.grabarRegistro(obj)){
+        cout << "¡VUELO CARGADO CON EXITO!"<<endl;
+        }else{
+            cout << "ERROR AL CARGAR VUELO, REINTENTE"<<endl;
+        }
+        system("pause");
+
+    }else{/// SERIA BUENO QUE LO DIGA APENAS SE CARGAR EL DESTINO
+        cout << "EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS"<<endl;
+        system("pause");
+    }
+
+}
+bool ArchivoVuelos::modificarRegistro(Vuelo obj, int pos){
     FILE *p=fopen(nombre, "rb+");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
 }
 
-Vuelos ArchivoVuelos::leerRegistro(int pos){
-    Vuelos obj;
+Vuelo ArchivoVuelos::leerRegistro(int pos){
+    Vuelo obj;
     obj.setCodigo(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
@@ -56,22 +78,35 @@ int ArchivoVuelos::contarRegistros(){
     fseek(p, 0, 2);
     int cantBytes=ftell(p);
     fclose(p);
-    return cantBytes/sizeof (Vuelos);
+    return cantBytes/sizeof (Vuelo);
 }
 
 void ArchivoVuelos::listarArchivo(){
     int cant=contarRegistros();
-    Vuelos obj;
+    Vuelo obj;
+    bool vuelos = false;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
-        obj.Mostrar();
-        if(obj.getEstado()==true){cout<<endl;}
+        if(obj.getEstado()){
+            obj.Mostrar();
+            vuelos = true;
+            cout<<endl;
+        }
     }
+     if(vuelos == false){
+        cout << "NO HAY VUELOS REGISTRADOS"<<endl;
+
+    }
+    system("pause");
+}
+void mostrarVuelos(){
+    ArchivoVuelos archVuelos;
+    archVuelos.listarArchivo();
 }
 
 int ArchivoVuelos::buscarCodigo(int cod){
     int cant=contarRegistros();
-    Vuelos obj;
+    Vuelo obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
         if(cod==obj.getCodigo()){
@@ -79,6 +114,50 @@ int ArchivoVuelos::buscarCodigo(int cod){
         }
     }
     return -1;
+}
+void buscarVuelo(){
+    int pos;
+    ArchivoVuelos archVuelos;
+    Vuelo obj;
+    int cod;
+    cout << "INGRESE EL CODIGO DE VUELO : "<<endl;
+    cin >> cod;
+    pos =  archVuelos.buscarCodigo(cod);
+    if(pos >= 0){
+        obj = archVuelos.leerRegistro(pos);
+        obj.Mostrar();
+
+    }else{
+        cout << "NO SE ENCONTRÓ NINGUN VUELO CON ESE CODIGO"<<endl;
+    }
+    system("pause");
+}
+
+void bajaVuelo()
+{
+    ArchivoVuelos archVuelos;
+    Vuelo obj;
+    int pos;
+    int codigo;
+    cout << "INGRESE EL CODIGO DE VUELO A DAR DE BAJA : "<<endl;
+    cin >> codigo;
+    pos = archVuelos.buscarCodigo(codigo);
+    if(pos >= 0)
+    {
+        obj = archVuelos.leerRegistro(pos);
+        obj.setEstado(false);
+        if(archVuelos.modificarRegistro(obj,pos))
+        {
+            cout << "EL VUELO SE DIO DE BAJA CORRECTAMENTE"<<endl;
+            system("pause");
+        }
+        else
+        {
+            cout << "NO FUE POSIBLE DAR DE BAJA EL VUELO"<<endl;
+            system("pause");
+        }
+
+    }
 }
 
 

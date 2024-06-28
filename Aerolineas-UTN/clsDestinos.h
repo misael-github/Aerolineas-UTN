@@ -1,7 +1,8 @@
 #ifndef CLSDESTINOS_H_INCLUDED
 #define CLSDESTINOS_H_INCLUDED
 
-class Destinos
+
+class Destino
 {
     private:
         int _numDestino;
@@ -9,7 +10,7 @@ class Destinos
         bool _estado;
     public:
 
-        void setNumDestino(int Dest);
+        void setNumDestino(int dest){_numDestino = dest;}
         void setNombre(const char *n){strcpy(_nombre,n);}
         void setEstado(bool est){_estado=est;}
 
@@ -22,18 +23,29 @@ class Destinos
 
 };
 
+<<<<<<< HEAD
 void Destinos::Cargar()
 {   _estado=true;
     int aux;
+=======
+
+
+void Destino::Cargar()
+{   int aux;
+>>>>>>> 2986cb9d63d4802e1f0d97a0a0391d447626606c
     cout<<"INGRESE UN NUMERO DE DESTINO : ";
     cin>>aux;
     setNumDestino(aux);
     cout<<"INGRESE EL NOMBRE DEL DESTINO : ";
     cargarCadena(_nombre,29);
+<<<<<<< HEAD
 
+=======
+    _estado = true;
+>>>>>>> 2986cb9d63d4802e1f0d97a0a0391d447626606c
 }
 
-void Destinos::Mostrar()
+void Destino::Mostrar()
 {
     if(_estado){
     cout<<"NUMERO DE DESTINO : "<<_numDestino<<endl;

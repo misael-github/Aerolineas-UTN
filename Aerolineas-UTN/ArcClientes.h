@@ -7,12 +7,17 @@ class ArchivoClientes{
     public:
         ArchivoClientes(const char *n="clientes.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        void grabarRegistro(Cliente obj);
-        void modificarRegistro(Cliente obj, int pos);
+        bool grabarRegistro(Cliente obj);
+        void modificarCliente(Cliente obj, int pos);
         Cliente leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
         int buscarDNI(int dni);
+        void mostrarCliente();
+        /*
+        void altaCliente();
+        void eliminarCliente();
+        */
 };
 
 void ArchivoClientes::limpiarArchivo(){
@@ -21,19 +26,45 @@ void ArchivoClientes::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoClientes::grabarRegistro(Cliente obj){
+bool ArchivoClientes::grabarRegistro(Cliente obj){
     FILE *p=fopen(nombre, "ab");
-    if(p==NULL){return;}
+    if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    return true;
+}
+void altaCliente()
+{
+    Cliente obj;
+    ArchivoClientes arcObj;
+    obj.Cargar();
+    if(arcObj.grabarRegistro(obj)){
+        cout << "¡CLIENTE CREADO EXITOSAMENTE!"<<endl;
+        system("pause");
+    }
+}
+void eliminarCliente()
+{   int  dni;
+    Cliente obj;
+    ArchivoClientes arcObj;
+    cout<<"INGRESE EL DNI DEL CLIENTE A DAR DE BAJA : ";
+    cin>> dni ;
+    int pos = arcObj.buscarDNI(dni);
+    obj=arcObj.leerRegistro(pos);
+    obj.setEstado(false);
+    arcObj.modificarCliente(obj,pos);
+    cout<<"EL CLIENTE SE DIO DE BAJA."<<endl;
+    //system("pause");
+
 }
 
-void ArchivoClientes::modificarRegistro(Cliente obj, int pos){
+void ArchivoClientes::modificarCliente(Cliente obj, int pos){
     FILE *p=fopen(nombre, "rb+");
     if(p==NULL){return;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
+    system("pause");
 }
 
 Cliente ArchivoClientes::leerRegistro(int pos){
@@ -49,6 +80,17 @@ Cliente ArchivoClientes::leerRegistro(int pos){
     fclose(p);
     return obj;
 }
+int ArchivoClientes::buscarDNI(int dni){
+    int cant=contarRegistros();
+    Cliente obj;
+    for(int i=0; i<cant; i++){
+        obj=leerRegistro(i);
+        if(obj.getDni() == dni){
+            return i;
+        }
+    }
+    return -1;
+}
 
 int ArchivoClientes::contarRegistros(){
     FILE *p=fopen(nombre, "rb");
@@ -62,23 +104,47 @@ int ArchivoClientes::contarRegistros(){
 void ArchivoClientes::listarArchivo(){
     int cant=contarRegistros();
     Cliente obj;
+    bool clientes = false;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
+        if(obj.getEstado()){
         obj.Mostrar();
-        if(obj.getEstado()==true){cout<<endl;}
-    }
-}
-
-int ArchivoClientes::buscarDNI(int dni){
-    int cant=contarRegistros();
-    Cliente obj;
-    for(int i=0; i<cant; i++){
-        obj=leerRegistro(i);
-        if(dni==obj.getDni()){
-            return i;
+        cout<<endl;
+        clientes = true;
         }
     }
-    return -1;
+    if(clientes == false){
+        cout << "NO HAY CLIENTES REGISTRADOS"<<endl;
+
+    }
+
+}
+
+void mostrarClientes(){
+    ArchivoClientes archCli;
+    archCli.listarArchivo();
+    system("pause");
+}
+
+
+
+void mostrarCliente(){
+    int pos;
+    ArchivoClientes archCli;
+    Cliente obj;
+    int dni;
+    cout << "INGRESE EL DNI DEL CLIENTE : "<<endl;
+    cin>> dni;
+    pos =  archCli.buscarDNI(dni);
+    if(pos >= 0){
+        obj = archCli.leerRegistro(pos);
+        obj.Mostrar();
+        cout<<"cli"<<endl;
+        system("pause");
+
+    }else{
+        cout << "NO SE ENCONTRÓ CLIENTE CON ESE DNI"<<endl;
+    }
 }
 
 

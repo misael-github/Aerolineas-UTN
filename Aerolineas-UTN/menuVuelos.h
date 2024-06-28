@@ -19,19 +19,19 @@ void menuVuelos(){
         system("cls");
         switch(opc){
         case 1:
-//            altaVuelo();
+            altaVuelo();
             break;
         case 2:
 //            modificarVuelo();
             break;
         case 3:
-//            bajaVuelo();
+            bajaVuelo();
             break;
         case 4:
-//            buscarVuelo();
+            buscarVuelo();
             break;
         case 5:
-//            mostrarVuelos();
+            mostrarVuelos();
             break;
         case 0:
             return;

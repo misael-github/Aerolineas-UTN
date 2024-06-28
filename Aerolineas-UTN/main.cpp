@@ -1,13 +1,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+
 using namespace std;
 
+<<<<<<< HEAD
 #include "funcionesGlobales.h"
+=======
+#include "cargarCadena.h"
+>>>>>>> 2986cb9d63d4802e1f0d97a0a0391d447626606c
 #include "clsFecha.h"
 #include "clsClientes.h"
-#include "clsDestinos.h"
 #include "clsReportes.h"
+#include "clsDestinos.h"
 #include "clsVuelos.h"
 #include "clsVueloxCliente.h"
 #include "ArcClientes.h"
@@ -17,9 +22,12 @@ using namespace std;
 #include "ArcVueloxCliente.h"
 #include "menuClientes.h"
 #include "menuDestinos.h"
+#include "Reportes.h"
 #include "menuReportes.h"
 #include "menuVuelos.h"
 #include "menuVueloxCliente.h"
+#include "menuConfiguraciones.h"
+#include "menuCompra.h"
 
 int main()
 {
@@ -33,6 +41,7 @@ int main()
         cout<<"3 - MENU DESTINOS"<<endl;
         cout<<"4 - COMPRAR"<<endl;
         cout<<"5 - REPORTES"<<endl;
+        cout<<"6 - CONFIGURACIONES"<<endl;
         cout<<"0 - SALIR"<<endl;
         cout<<"----------------------------------------"<<endl;
         cout<<"INGRESE LA OPCION: ";
@@ -49,10 +58,14 @@ int main()
                 menuDestinos();
                 break;
             case 4:
-                menuVuelosxCliente();
+                 comprar();
                 break;
             case 5:
                 menuReportes();
+                break;
+            case 6:
+                menuConfiguraciones();
+                break;
           case 0:
                 return 0;
             default:
