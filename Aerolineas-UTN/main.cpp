@@ -54,13 +54,8 @@ int main()
                 menuDestinos();
                 break;
             case 4:
-                 menuCompra();
+                 comprar();
                 break;
-                /*
-            case 5:
-               // menuVuelosxCliente();
-                break;
-                */
             case 5:
                 menuReportes();
                 break;

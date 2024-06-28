@@ -11,6 +11,7 @@ void menuReportes(){
         cout << "2- CANTIDAD DE PASAJES VENDIDOS POR DESTINO"<<endl;
         cout << "3- DESTINO CON MENOR CANTIDAD DE PASAJES VENDIDOS"<<endl;
         cout << "4- MES CON MAYOR RECAUDACION"<<endl;
+        cout << "5- LISTAR TODAS LAS COMPRAS"<<endl;
         cout << "0- VOLVER AL MENU PRINCIPAL"<<endl;
         cout << "----------------"<<endl;
         cout << "INGRESE UNA OPCION: ";
@@ -27,7 +28,10 @@ void menuReportes(){
             destinoConMenorVentas();
             break;
         case 4:
-//            mesDeMayorRecaudacion();
+            mesDeMayorRecaudacion();
+            break;
+        case 5:
+            listarCompras();
             break;
         case 0:
             return;

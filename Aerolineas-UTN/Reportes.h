@@ -77,6 +77,15 @@ int buscarMenor(int *vec, int tam){
     }
     return pos;
 }
+int buscarMayor(int *vec, int tam){
+    int pos = 0;
+    for(int i=1; i <= tam; i++){
+        if(vec[i] > vec[pos] ){
+            pos = i;
+        }
+    }
+    return pos;
+}
 void destinoConMenorVentas(){
  ArchivoDestinos archDesti;
     int cantReg  = archDesti.contarRegistros();
@@ -98,6 +107,32 @@ void destinoConMenorVentas(){
     }
     int pos = buscarMenor(destinos, cantReg);
     cout << "EL DESTINO CON MENOR CANTIDAD DE PASAJES VENDIDOS ES EL "<< pos + 1<<endl;
+    system("pause");
+}
+void mesDeMayorRecaudacion(){
+    ArchivoVueloxCliente archiVuelosComprados;
+    VuelosxCliente obj;
+    int meses[12] = {0};
+    int cantCompras = archiVuelosComprados.contarRegistros();
+    for(int i = 0; i < cantCompras; i++){
+        obj = archiVuelosComprados.leerRegistro(i);
+        meses[obj.getFecha().getMes()] += obj.getPrecio();
+    }
+    int pos = buscarMayor(meses, 11);
+    cout << "EL MES CON MAYOR RECAUDACION FUE EL MES "<< pos + 1<<endl;
+
+system("pause");
+}
+void listarCompras(){
+
+    ArchivoVueloxCliente archCompras;
+    VuelosxCliente obj;
+    int cantReg = archCompras.contarRegistros();
+    for(int i=0; i < cantReg;i++){
+        obj.Mostrar();
+        cout<<endl;
+
+    }
     system("pause");
 }
 #endif // REPORTES_H_INCLUDED

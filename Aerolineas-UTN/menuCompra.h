@@ -1,9 +1,9 @@
 #ifndef MENUCOMPRA_H_INCLUDED
 #define MENUCOMPRA_H_INCLUDED
 
-bool resumenDeCompra(const char *nom, Vuelo obj, Cliente cliente);
+bool resumenDeCompra(const char *nom, int  codigo, Cliente cliente);
 
-void menuCompra(){
+void comprar(){
     Cliente cli;
     int dni;
     cout << "INGRESE EL DNI DEL CLIENTE : ";
@@ -18,13 +18,13 @@ void menuCompra(){
     int destino, pos;
     char nombre[30];
     ArchivoDestinos archDesti;
-    Destino obj;
+    Destino objDestino;
     archDesti.listarArchivo();
 
     cout << "SELECCIONE EL NUMERO DE DESTINO : ";
     cin >> destino;
     pos = archDesti.buscarNumeroDestino(destino);
-    obj = archDesti.leerRegistro(pos);
+    objDestino = archDesti.leerRegistro(pos);
     cout<<endl;
     system("cls");
 
@@ -37,12 +37,17 @@ void menuCompra(){
     /// SI NO EXISTE UN VUELO CARGADO PARA EL DESTINO QUE SELECCIONO NO ME DEJA COMPRAR
     for(int i = 0; i < cant ;i++){
         objVuelo = archVuelos.leerRegistro(i);
-        if(obj.getNumDestino() == objVuelo.getDestino().getNumDestino() && objVuelo.getEstado()){
+        if(objDestino.getNumDestino() == objVuelo.getDestino().getNumDestino() && objVuelo.getEstado()){
             objVuelo.Mostrar();
-            strcpy(nombre,obj.getNombre());
+            strcpy(nombre,objDestino.getNombre());
             encontrado = true;
         }
     }
+    /*}else{
+         cout << "EL DESTINO SELECCIONADO ES INCORRECTO"<<endl;
+        system("pause");
+        return;
+    }*/
     if(encontrado == false){
         cout << "NO HAY VUELOS PARA EL DESTINO SELECCIONADO"<<endl;
         system("pause");
@@ -53,8 +58,9 @@ void menuCompra(){
     cout << "SELECCIONE EL CODIGO DE VUELO : ";
     cin >> codigo;
     system("cls");
-
-    if(resumenDeCompra(nombre, objVuelo, cli)){
+    cout << "vuelo que paso por parametro"<<endl;
+    objVuelo.Mostrar();
+    if(resumenDeCompra(nombre, codigo, cli)){
         cout << "¡COMPRA CARGADA CON EXITO!"<<endl;
         system("pause");
     }else{
@@ -68,7 +74,9 @@ void menuCompra(){
     }
 
 }
-bool resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
+bool resumenDeCompra(const char *nombre, int cod, Cliente cliente){
+    ArchivoVuelos archVuelos;
+    Vuelo vuelo;
     cout << "--------- RESUMEN DE COMPRA --------"<<endl;
     cout << "CLIENTE: "<<endl;
     cliente.Mostrar();
@@ -76,8 +84,11 @@ bool resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     cout << "DESTINO SELECCIONADO: "<<nombre<<endl;
     cout << endl;
     cout << "VUELO: "<<endl;
-    obj.Mostrar();
-    cout<<endl;
+    int pos = archVuelos.buscarCodigo(cod);
+    if(pos >= 0){
+       vuelo = archVuelos.leerRegistro(pos);
+       vuelo.Mostrar();
+        cout<<endl;
     int confirma;
     cout << "¿CONFIRMA COMPRA?"<<endl;
     cout << "1- SI "<< " 2- NO"<<endl;
@@ -86,9 +97,10 @@ bool resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     VuelosxCliente compra;
     if(confirma == 1){
         compra.setDni(cliente.getDni());
-        compra.setCodigoVuelo(obj.getCodigo());
-        compra.setFecha(obj.getFecha());
-        compra.setDestino(obj.getDestino());
+        compra.setCodigoVuelo(vuelo.getCodigo());
+        compra.setFecha(vuelo.getFecha());
+        compra.setDestino(vuelo.getDestino());
+        compra.setPrecio(vuelo.getPrecio());
         if(archVuelosCliente.grabarRegistro(compra)){
             return true;
         }
@@ -96,6 +108,8 @@ bool resumenDeCompra(const char *nombre, Vuelo obj, Cliente cliente){
     }else{
         return false;
     }
+    }
+    //vuelo.Mostrar();
     return false;
 }
 #endif // MENUCOMPRA_H_INCLUDED
