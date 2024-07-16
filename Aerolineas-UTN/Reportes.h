@@ -7,7 +7,8 @@ void vueloCliente(){
     ArchivoVueloxCliente archVueloCliente;
     int cantReg  = archVueloCliente.contarRegistros();
     ArchivoClientes archClientes;
-    VuelosxCliente compra;
+    VueloxCliente compra;
+    system("cls");
     cout << "INGRESE DNI DEL CLIENTE: ";
     cin >> dni;
     int pos = archClientes.buscarDNI(dni);
@@ -42,7 +43,7 @@ void ponerEnceroVector(int *destinos,int cant){
 int contarPasajesVendidosPorDestino(int *destinos){
 
         ArchivoVueloxCliente archiVuelosComprados;
-        VuelosxCliente obj;
+        VueloxCliente obj;
         int cantCompras = archiVuelosComprados.contarRegistros();
         for(int i=0; i < cantCompras;i++){
         obj = archiVuelosComprados.leerRegistro(i);
@@ -62,6 +63,7 @@ void pasajesVendidosPorDestino(){
         ponerEnceroVector(destinos,cantReg);
 
         contarPasajesVendidosPorDestino(destinos);
+        system("cls");
         mostrarVector(destinos,cantReg);
         system("pause");
 
@@ -97,7 +99,7 @@ void destinoConMenorVentas(){
     ponerEnceroVector(destinos,cantReg);
 
     ArchivoVueloxCliente archiVuelosComprados;
-    VuelosxCliente obj;
+    VueloxCliente obj;
     int cantCompras = archiVuelosComprados.contarRegistros();
     for(int i=0; i < cantCompras;i++){
     obj = archiVuelosComprados.leerRegistro(i);
@@ -106,32 +108,43 @@ void destinoConMenorVentas(){
 
     }
     int pos = buscarMenor(destinos, cantReg);
+    system("cls");
+    rlutil::locate(40,12);
     cout << "EL DESTINO CON MENOR CANTIDAD DE PASAJES VENDIDOS ES EL "<< pos + 1<<endl;
     system("pause");
 }
 void mesDeMayorRecaudacion(){
     ArchivoVueloxCliente archiVuelosComprados;
-    VuelosxCliente obj;
+    VueloxCliente obj;
     int meses[12] = {0};
     int cantCompras = archiVuelosComprados.contarRegistros();
     for(int i = 0; i < cantCompras; i++){
         obj = archiVuelosComprados.leerRegistro(i);
         meses[obj.getFecha().getMes()] += obj.getPrecio();
+        //obj.Mostrar();
     }
+
     int pos = buscarMayor(meses, 11);
-    cout << "EL MES CON MAYOR RECAUDACION FUE EL MES "<< pos + 1<<endl;
+    system("cls");
+    rlutil::locate(40,12);
+    cout << "EL MES CON MAYOR RECAUDACION FUE EL MES "<< pos<<endl;
 
 system("pause");
 }
 void listarCompras(){
 
     ArchivoVueloxCliente archCompras;
-    VuelosxCliente obj;
+    VueloxCliente obj;
     int cantReg = archCompras.contarRegistros();
+    bool encontrado = false;
     for(int i=0; i < cantReg;i++){
+         obj=   archCompras.leerRegistro(i);
         obj.Mostrar();
+        encontrado = true;
         cout<<endl;
 
+    } if(encontrado == false){
+        cout << "NO HAY COMPRAS CARGADAS"<<endl;
     }
     system("pause");
 }

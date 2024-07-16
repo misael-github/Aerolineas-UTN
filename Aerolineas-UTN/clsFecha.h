@@ -56,10 +56,11 @@ public:
 
 void Fecha::setAnio(int anio)
 {
-    if(anio>=getAnioActual()&&anio<2026)
+    if(anio>=getAnioActual()&&anio<=2026)
     {
         _a=anio;
     }
+
     else
     {
         system("cls");
@@ -70,7 +71,18 @@ void Fecha::setAnio(int anio)
 
     }
 }
-
+bool compararFecha(Fecha f){
+    if(f.getAnio() > year){
+        return true;
+    }
+    if(f.getAnio() == year && f.getMes() > month){
+        return true;
+    }
+    if(f.getAnio() == year && f.getMes() == month && f.getDia() > day){
+        return true;
+    }
+    return false;
+}
 void Fecha::setMes(int mes)
 {   bool validar=false;
     if(mes>0 &&mes<13)
@@ -111,7 +123,7 @@ void Fecha::setMes(int mes)
 }
 
 void Fecha::setDia(int dia)
-{   bool validar=false;
+{   //bool validar=false;
    if(dia>0&&dia<32)
    {
        _d=dia;
@@ -127,16 +139,24 @@ void Fecha::setDia(int dia)
 }
 
 void Fecha::Cargar()
-{   int aux;
-    cout<<"INGRESE DIA : ";
-    cin>>aux;
-    setDia(aux);
-    cout<<"INGRESE MES : ";
-    cin>>aux;
-    setMes(aux);
-    cout<<"INGRESE ANIO : ";
-    cin>>aux;
-    setAnio(aux);
+{
+    //rlutil::locate(65,6);
+    //int aux;
+    item("DIA: ",70,6,false);
+    //cout<<"INGRESE DIA : ";
+    rlutil::locate(70,7);
+    cin>>_d;
+    //setDia(aux);
+    item("MES: ",70,9,false);
+    //cout<<"INGRESE MES : ";
+    rlutil::locate(70,10);
+    cin>>_m;
+    //setMes(aux);
+    item("ANIO: ",70,12,false);
+    //cout<<"INGRESE ANIO : ";
+    rlutil::locate(70,13);
+    cin>>_a;
+    //setAnio(aux);
 }
 void Fecha::Mostrar()
 {

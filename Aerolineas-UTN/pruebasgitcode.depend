@@ -1,0 +1,96 @@
+# depslib dependency file v1.0
+1720092370 source:c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"rlutil.h"
+	"funcionesRlutil.h"
+	"cargarCadena.h"
+	"Login.h"
+	"Horario.h"
+	"clsFecha.h"
+	"clsClientes.h"
+	"clsReportes.h"
+	"clsDestinos.h"
+	"clsVueloxCliente.h"
+	"ArcClientes.h"
+	"ArcDestinos.h"
+	"clsVuelos.h"
+	"ArcReportes.h"
+	"ArcVuelos.h"
+	"ArcVueloxCliente.h"
+	"menuClientes.h"
+	"menuDestinos.h"
+	"Reportes.h"
+	"menuReportes.h"
+	"menuVuelos.h"
+	"menuVueloxCliente.h"
+	"Configuraciones.h"
+	"menuConfiguraciones.h"
+	"menuCompra.h"
+
+1719982411 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1719063143 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\cargarcadena.h
+
+1720098289 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsfecha.h
+	<chrono>
+	<ctime>
+
+1720102844 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsclientes.h
+
+1720098366 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsreportes.h
+
+1720065088 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsdestinos.h
+
+1720105731 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsvuelos.h
+
+1720097478 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\clsvueloxcliente.h
+
+1720103227 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\arcclientes.h
+
+1720103108 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\arcdestinos.h
+	"clsDestinos.h"
+
+1718813263 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\arcreportes.h
+
+1720106077 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\arcvuelos.h
+
+1719629092 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\arcvueloxcliente.h
+
+1720098720 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menuclientes.h
+
+1720098776 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menudestinos.h
+
+1720098852 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\reportes.h
+
+1720016490 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menureportes.h
+
+1720098762 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menuvuelos.h
+
+1720053041 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menuvueloxcliente.h
+
+1720060666 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\configuraciones.h
+
+1720060774 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menuconfiguraciones.h
+
+1720101452 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\menucompra.h
+
+1720075730 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\funcionesrlutil.h
+
+1720065776 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\horario.h
+
+1720075790 c:\users\misael\desktop\utn\2024\codeblocksrepo\aerolineas-utn\login.h
+

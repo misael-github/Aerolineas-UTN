@@ -1,5 +1,6 @@
 #ifndef CLSREPORTES_H_INCLUDED
 #define CLSREPORTES_H_INCLUDED
+
 class Reportes
 {
     private:
@@ -11,7 +12,7 @@ class Reportes
         void setEstado(bool estado){_estado=estado;}
         bool getEstado(){return _estado;}
         int getNumero(){return numero;}
-        Mostrar(){};
+        void Mostrar(){};
 };
 
 

@@ -7,9 +7,9 @@ class ArchivoVueloxCliente{
     public:
         ArchivoVueloxCliente(const char *n="vuelosxcliente.dat"){strcpy(nombre,n);}
         void limpiarArchivo();
-        bool grabarRegistro(VuelosxCliente obj);
-        void modificarRegistro(VuelosxCliente obj, int pos);
-        VuelosxCliente leerRegistro(int pos);
+        bool grabarRegistro(VueloxCliente obj);
+        void modificarRegistro(VueloxCliente obj, int pos);
+        VueloxCliente leerRegistro(int pos);
         void listarArchivo();
         int contarRegistros();
         int buscarRegistro(int num);
@@ -21,7 +21,7 @@ void ArchivoVueloxCliente::limpiarArchivo(){
     fclose(p);
 }
 
-bool ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
+bool ArchivoVueloxCliente::grabarRegistro(VueloxCliente obj){
     FILE *p=fopen(nombre, "ab");
     if(p==NULL){return false;}
     fwrite(&obj, sizeof obj, 1, p);
@@ -29,7 +29,7 @@ bool ArchivoVueloxCliente::grabarRegistro(VuelosxCliente obj){
     return true;
 }
 
-void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
+void ArchivoVueloxCliente::modificarRegistro(VueloxCliente obj, int pos){
     FILE *p=fopen(nombre, "rb+");
     if(p==NULL){return;}
     fseek(p, pos * sizeof obj, 0);
@@ -37,8 +37,8 @@ void ArchivoVueloxCliente::modificarRegistro(VuelosxCliente obj, int pos){
     fclose(p);
 }
 
-VuelosxCliente ArchivoVueloxCliente::leerRegistro(int pos){
-    VuelosxCliente obj;
+VueloxCliente ArchivoVueloxCliente::leerRegistro(int pos){
+    VueloxCliente obj;
     obj.setDni(-1);
     FILE *p=fopen(nombre, "rb");
     if(p==NULL){
@@ -57,12 +57,12 @@ int ArchivoVueloxCliente::contarRegistros(){
     fseek(p, 0, 2);
     int cantBytes=ftell(p);
     fclose(p);
-    return cantBytes/sizeof (VuelosxCliente);
+    return cantBytes/sizeof (VueloxCliente);
 }
 
 void ArchivoVueloxCliente::listarArchivo(){
     int cant=contarRegistros();
-    VuelosxCliente obj;
+    VueloxCliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
         obj.Mostrar();
@@ -71,7 +71,7 @@ void ArchivoVueloxCliente::listarArchivo(){
 }
 int ArchivoVueloxCliente::buscarRegistro(int num){
     int cant=contarRegistros();
-    VuelosxCliente obj;
+    VueloxCliente obj;
     for(int i=0; i<cant; i++){
         obj=leerRegistro(i);
         if(num==obj.getDni()){

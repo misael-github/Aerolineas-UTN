@@ -37,18 +37,24 @@
 		<Unit filename="ArcReportes.h" />
 		<Unit filename="ArcVuelos.h" />
 		<Unit filename="ArcVueloxCliente.h" />
+		<Unit filename="Horario.h" />
+		<Unit filename="Login.h" />
 		<Unit filename="clsClientes.h" />
 		<Unit filename="clsDestinos.h" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsReportes.h" />
 		<Unit filename="clsVuelos.h" />
 		<Unit filename="clsVueloxCliente.h" />
+		<Unit filename="funcionesRlutil.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menuClientes.h" />
+		<Unit filename="menuCompra.h" />
+		<Unit filename="menuConfiguraciones.h" />
 		<Unit filename="menuDestinos.h" />
 		<Unit filename="menuReportes.h" />
 		<Unit filename="menuVuelos.h" />
 		<Unit filename="menuVueloxCliente.h" />
+		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

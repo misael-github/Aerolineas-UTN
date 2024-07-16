@@ -1,6 +1,6 @@
 #ifndef ARCDESTINOS_H_INCLUDED
 #define ARCDESTINOS_H_INCLUDED
-
+#include "clsDestinos.h"
 class ArchivoDestinos{
     private:
         char nombre[30];
@@ -90,6 +90,7 @@ void ArchivoDestinos::listarArchivo(){
 }
 void mostrarDestinos(){
     ArchivoDestinos archDesti;
+    system("cls");
     archDesti.listarArchivo();
     system("pause");
 }
@@ -110,17 +111,23 @@ void buscarDestino(){
     ArchivoDestinos archDesti;
     Destino obj;
     int num;
-    cout << "INGRESE NUMERO DE DESTINO : "<<endl;
+    system("cls");
+    item("INGRESE NUMERO DE DESTINO : ", 42,12,false);
+    //cout << "INGRESE NUMERO DE DESTINO : "<<endl;
+    rlutil::locate(42,13);
     cin >> num;
     pos =  archDesti.buscarNumeroDestino(num);
     if(pos >= 0){
         obj = archDesti.leerRegistro(pos);
         obj.Mostrar();
+        itemPause("Presione una tecla para continuar...",42,16);
 
     }else{
-        cout << "NO SE ENCONTRÓ NINGUN DESTINO CON ESE NUMERO"<<endl;
+        system("cls");
+        itemError("NO SE ENCONTRO NINGUN DESTINO CON ESE NUMERO ", 42,14);
+        itemPause("Presione una tecla para continuar...",42,16);
     }
-    system("pause");
+    //system("pause");
 }
 void bajaDestino()
 {
@@ -128,7 +135,10 @@ void bajaDestino()
     Destino obj;
     int pos;
     int num;
-    cout << "INGRESE EL NUMERO DE DESTINO A DAR DE BAJA : "<<endl;
+    system("cls");
+    item("INGRESE EL NUMERO DE DESTINO A DAR DE BAJA : ",40,12,false);
+    //cout << "INGRESE EL NUMERO DE DESTINO A DAR DE BAJA : "<<endl;
+    rlutil::locate(40,13);
     cin >> num;
     pos = archDesti.buscarNumeroDestino(num);
     if(pos >= 0)
@@ -147,7 +157,34 @@ void bajaDestino()
             system("pause");
 
     }else{
-        cout << "NO EXISTE EL DESTINO"<<endl;
+        system("cls");
+        itemError("NO EXISTE EL DESTINO",40,12);
+        itemPause("Presione una tecla pra continuar...",40,14);
+    }
+}
+void editarDestino(){
+    ArchivoDestinos archDestinos;
+    Destino destino;
+    char nombre[15];
+    int numero;
+    cout<<"NUMERO DE DESTINO A EDITAR: ";
+    cin>>numero;
+    int pos = archDestinos.buscarNumeroDestino(numero);
+    if(pos >= 0){
+    destino = archDestinos.leerRegistro(pos);
+    int opc = destino.menuEditar();
+    switch(opc){
+    case 1:
+    cout << "INGRESE EL NUEVO NOMBRE: ";
+    cargarCadena(nombre,14);
+    destino.setNombre(nombre);
+    archDestinos.modificarRegistro(destino,pos);
+    cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    system("pause");
+    break;
+    }
+    }else {
+        cout << "CLIENTE INEXISTENTE"<<endl;
         system("pause");
     }
 }

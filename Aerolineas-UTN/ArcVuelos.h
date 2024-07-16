@@ -33,21 +33,47 @@ void altaVuelo(){
     ArchivoVuelos archVuelos;
     Vuelo obj;
     ArchivoDestinos archDestinos;
-    obj.Cargar();
-
-    if(archDestinos.buscarNumeroDestino(obj.getDestino().getNumDestino()) >= 0){
-    if(archVuelos.grabarRegistro(obj)){
-        cout << "¡VUELO CARGADO CON EXITO!"<<endl;
-        }else{
-            cout << "ERROR AL CARGAR VUELO, REINTENTE"<<endl;
+    Destino destino;
+    bool band= false;
+    if(obj.Cargar()){
+    int cantRegD = archDestinos.contarRegistros();
+    int pos  = archDestinos.buscarNumeroDestino(obj.getDestino().getNumDestino());
+/*
+    for(int i =0; i <cantRegD; i++ ){
+        destino = archDestinos.leerRegistro(i);
+        if(destino.getNumDestino()){
+            band = true;
         }
+    }*/
+    //archDestinos.buscarNumeroDestino(obj.getDestino().getNumDestino())
+    int pos2 = archVuelos.buscarCodigo(obj.getCodigo());
+
+    if( pos >= 0 && pos2 < 0){
+        if(archVuelos.grabarRegistro(obj)){
+        item("¡VUELO CARGADO CON EXITO!",50,28,false);
+        itemPause("Presione una tecla para continuar...",45,29);
+        //cout << "¡VUELO CARGADO CON EXITO!"<<endl;
+        }else{
+            itemError("ERROR AL CARGAR VUELO, REINTENTE", 40,28);
+            //cout << "ERROR AL CARGAR VUELO, REINTENTE"<<endl;
+        }
+        }else{cout<< "EL DESTINO NO EXISTE / YA EXISTE UN VUELO CON ESE CODIGO"<<endl;
         system("pause");
 
-    }else{/// SERIA BUENO QUE LO DIGA APENAS SE CARGAR EL DESTINO
-        cout << "EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS"<<endl;
-        system("pause");
     }
+    /*else{/// SERIA BUENO QUE LO DIGA APENAS SE CARGAR EL DESTINO
+        itemError("EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS", 40,28);
+        //cout << "EL DESTINO NO EXISTE EN EL ARCHIVO DESTINOS"<<endl;
+        //system("pause");
+    }*/
+    /*
+    else{
+        itemError("NO FUE POSIBLE LA CARGA DEL VUELO, REINENTE", 40,28);
+        //cout << "NO FUE POSIBLE LA CARGA DEL VUELO, REINENTE"<<endl;
+    system("pause");
+    }*/
 
+    }
 }
 bool ArchivoVuelos::modificarRegistro(Vuelo obj, int pos){
     FILE *p=fopen(nombre, "rb+");
@@ -66,8 +92,8 @@ Vuelo ArchivoVuelos::leerRegistro(int pos){
         obj.setCodigo(-2);
         return obj;
     }
-    fseek(p, pos * sizeof obj, 0);
-    fread(&obj, sizeof obj, 1, p);
+    fseek(p, pos * sizeof(Vuelo), 0);
+    fread(&obj, sizeof(Vuelo), 1, p);
     fclose(p);
     return obj;
 }
@@ -82,6 +108,7 @@ int ArchivoVuelos::contarRegistros(){
 }
 
 void ArchivoVuelos::listarArchivo(){
+    system("cls");
     int cant=contarRegistros();
     Vuelo obj;
     bool vuelos = false;
@@ -94,10 +121,12 @@ void ArchivoVuelos::listarArchivo(){
         }
     }
      if(vuelos == false){
-        cout << "NO HAY VUELOS REGISTRADOS"<<endl;
+        item("NO HAY VUELOS REGISTRADOS",40,12,false);
+        //cout << "NO HAY VUELOS REGISTRADOS"<<endl;
 
     }
     system("pause");
+    //itemPause("Presione una tecla para continuar...",40,15);
 }
 void mostrarVuelos(){
     ArchivoVuelos archVuelos;
@@ -116,30 +145,38 @@ int ArchivoVuelos::buscarCodigo(int cod){
     return -1;
 }
 void buscarVuelo(){
+    system("cls");
     int pos;
     ArchivoVuelos archVuelos;
     Vuelo obj;
     int cod;
-    cout << "INGRESE EL CODIGO DE VUELO : "<<endl;
+    item("INGRESE EL CODIGO DE VUELO A BUSCAR: ", 40,12,false);
+    //cout << "INGRESE EL CODIGO DE VUELO: "<<endl;
+    rlutil::locate(40,13);
     cin >> cod;
     pos =  archVuelos.buscarCodigo(cod);
     if(pos >= 0){
         obj = archVuelos.leerRegistro(pos);
+
         obj.Mostrar();
 
     }else{
-        cout << "NO SE ENCONTRÓ NINGUN VUELO CON ESE CODIGO"<<endl;
+        item("NO SE ENCONTRÓ NINGUN VUELO CON ESE CODIGO: ", 40,15,false);
+        //cout << "NO SE ENCONTRÓ NINGUN VUELO CON ESE CODIGO"<<endl;
     }
-    system("pause");
+    itemPause("Presiones una tecla para continuar...",40,30);
 }
 
 void bajaVuelo()
 {
+    system("cls");
     ArchivoVuelos archVuelos;
     Vuelo obj;
     int pos;
     int codigo;
-    cout << "INGRESE EL CODIGO DE VUELO A DAR DE BAJA : "<<endl;
+    item("INGRESE EL CODIGO DE VUELO A DAR DE BAJA: ", 40,12,false);
+    //cout << " "<<endl;
+    rlutil::locate(40,13);
     cin >> codigo;
     pos = archVuelos.buscarCodigo(codigo);
     if(pos >= 0)
@@ -148,17 +185,104 @@ void bajaVuelo()
         obj.setEstado(false);
         if(archVuelos.modificarRegistro(obj,pos))
         {
-            cout << "EL VUELO SE DIO DE BAJA CORRECTAMENTE"<<endl;
-            system("pause");
-        }
-        else
-        {
-            cout << "NO FUE POSIBLE DAR DE BAJA EL VUELO"<<endl;
-            system("pause");
+            item("¡EL VUELO SE DIO DE BAJA EXITOSAMENTE! ", 40,15,false);
+            //cout << "EL VUELO SE DIO DE BAJA CORRECTAMENTE"<<endl;
+            itemPause("Presiones una tecla para continuar...",40,17);
         }
 
     }
+        else
+        {
+            system("cls");
+            itemError("CODIGO INCORRECTO, NO FUE POSIBLE DAR DE BAJA EL VUELO ", 40,12);
+             itemPause("Presiones una tecla para continuar...",40,17);
+            //cout << "NO FUE POSIBLE DAR DE BAJA EL VUELO"<<endl;
+        }
 }
 
-
+void editarVuelo(){
+    system("cls");
+    ArchivoVuelos archVuelos;
+    Vuelo vuelo;
+    int codigo, clase;
+    float precio;
+    Destino destino;
+    Horario hora;
+    Fecha fecha;
+    item("CODIGO DE VUELO A EDITAR: ",40,12,false);
+    rlutil::locate(40,13);
+    cin>>codigo;
+    int pos = archVuelos.buscarCodigo(codigo);
+    if(pos >= 0){
+    vuelo = archVuelos.leerRegistro(pos);
+    int opc = vuelo.menuEditar();
+    system("cls");
+    switch(opc){
+    case 1:
+    item("INGRESE LA NUEVA CLASE: ", 40,12,false);
+    rlutil::locate(40,13);
+    cin>> clase;
+    vuelo.setClase(clase);
+    archVuelos.modificarRegistro(vuelo,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,16,false);
+    itemPause("Presione una tecla para continuar...",40,18);
+    break;
+    case 2:
+    item("INGRESE EL NUEVO DESTINO: ", 40,12,false);
+    rlutil::locate(40,13);
+    destino.Cargar();
+    vuelo.setDestino(destino);
+    archVuelos.modificarRegistro(vuelo,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,16,false);
+    itemPause("Presione una tecla para continuar...",40,18);
+    break;
+    case 3:
+    item("INGRESE EL NUEVO PRECIO: ", 40,12,false);
+    rlutil::locate(40,13);
+    cin>>precio;
+    vuelo.setPrecio(precio);
+    archVuelos.modificarRegistro(vuelo,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,16,false);
+    itemPause("Presione una tecla para continuar...",40,18);
+    break;
+    case 4:
+    item("INGRESE LA NUEVA HORA: ", 40,12,false);
+    rlutil::locate(40,13);
+    hora.Cargar();
+    vuelo.setHora(hora);
+    archVuelos.modificarRegistro(vuelo,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,16,false);
+    itemPause("Presione una tecla para continuar...",40,18);
+    system("pause");
+    break;
+    case 5:
+    item("INGRESE LA NUEVA FECHA: ", 40,12,false);
+    rlutil::locate(40,13);
+    fecha.Cargar();
+    vuelo.setFecha(fecha);
+    archVuelos.modificarRegistro(vuelo,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,16,false);
+    itemPause("Presione una tecla para continuar...",40,18);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    /*
+    case 6:
+    cout << "INGRESE LA NUEVA CANTIDAD DE ASIENTOS: ";
+    cin>>asientos;
+    vuelo.setCantidadAsientos(asientos);
+    archVuelos.modificarRegistro(vuelo,pos);
+    cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    system("pause");
+    break;
+    */
+    }
+    }else {
+        system("cls");
+        //rlutil::locate(40,12);
+       // cout << "VUELO INEXISTENTE"<<endl;
+        item("VUELO INEXISTENTE",40,14,false);
+        itemPause("Presione una tecla para continuar...",40,16);
+    }
+}
 #endif // ARCVUELOS_H_INCLUDED

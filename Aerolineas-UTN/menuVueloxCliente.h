@@ -1,6 +1,6 @@
 #ifndef MENUVUELOXCLIENTE_H_INCLUDED
 #define MENUVUELOXCLIENTE_H_INCLUDED
-
+/*
 void menuVuelosxCliente(){
     int opc;
     while(true){
@@ -33,5 +33,5 @@ void menuVuelosxCliente(){
     }
 }
 
-
+*/
 #endif // MENUVUELOXCLIENTE_H_INCLUDED

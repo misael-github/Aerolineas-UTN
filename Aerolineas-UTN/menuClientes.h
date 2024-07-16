@@ -1,47 +1,73 @@
 #ifndef MENUCLIENTES_H_INCLUDED
 #define MENUCLIENTES_H_INCLUDED
 
-void menuClientes(){
-    int opc;
-    while(true){
+menuClientes(){
+
+  int op = 1, y = 0;
+  rlutil::hidecursor();
+    do{
         system("cls");
-        cout << "MENU CLIENTES"<<endl;
-        cout << "----------------"<<endl;
-        cout << "1- CREAR CLIENTE"<<endl;
-        cout << "2- MODIFICAR CLIENTE"<<endl;
-        cout << "3- DAR DE BAJA CLIENTE"<<endl;
-        cout << "4- BUSCAR CLIENTE"<<endl;
-        cout << "5- VER TODOS LOS CLIENTES"<<endl;
-        cout << "0- VOLVER AL MENU PRINCIPAL"<<endl;
-        cout << "----------------"<<endl;
-        cout << "INGRESE UNA OPCION: ";
-        cin>>opc;
-        system("cls");
-        switch(opc){
-        case 1:
-            altaCliente();
+        titulo("                    CLIENTES                  ", 40,2);
+        item("ALTA CLIENTE", 50,8, y == 0);
+        item("MODIFICAR CLIENTE", 50,9, y == 1);
+        item("BAJA CLIENTE", 50,10, y == 2);
+        item("BUSCAR CLIENTE", 50,11, y == 3);
+        item("LISTAR CLIENTES", 50,12, y == 4);
+        item("VOLVER AL MENU PRINCIPAL", 50,13, y == 5);
+
+
+        rlutil::locate(48,8 + y);
+        cout << (char) 175 <<endl;
+
+        int key = rlutil::getkey();
+
+        switch(key){
+            case 14: /// UP
+            rlutil::locate(48,8 + y);
+            cout << " " <<endl;
+            y--;
+            if(y < 0){
+                y = 0;
+            }
             break;
-        case 2:
-           // modificarCliente();
+            case 15: /// DOWN
+            rlutil::locate(48,8 + y);
+            cout << " " <<endl;
+            y++;
+            if(y > 5){
+                y = 5;
+            }
             break;
-        case 3:
-            eliminarCliente();
-            break;
-        case 4:
-            mostrarCliente();
-            break;
-        case 5:
-            mostrarClientes();
-            break;
-        case 0:
-            return;
-            break;
+            case 1: /// ENTER
+
+                switch(y){
+                case 0:
+                    altaCliente();
+                    break;
+                case 1:
+                    editarCliente();
+                    break;
+                case 2:
+                    eliminarCliente();
+                    break;
+                case 3:
+                    mostrarCliente();
+                    break;
+                case 4:
+                    mostrarClientes();
+                    break;
+                case 5:
+                        op = 0;
+                    break;
+                }
+
+                break;
         default:
-            cout << "LA OPCION INGRESADA ES INCORRECTA, REINTENTE"<<endl;
-            system("pause");
             break;
         }
-    }
+
+        }while(op != 0);
+       // system("cls");
 }
 
 #endif // MENUCLIENTES_H_INCLUDED

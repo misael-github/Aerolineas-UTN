@@ -14,10 +14,6 @@ class ArchivoClientes{
         int contarRegistros();
         int buscarDNI(int dni);
         void mostrarCliente();
-        /*
-        void altaCliente();
-        void eliminarCliente();
-        */
 };
 
 void ArchivoClientes::limpiarArchivo(){
@@ -38,33 +34,142 @@ void altaCliente()
     Cliente obj;
     ArchivoClientes arcObj;
     obj.Cargar();
+    int pos = arcObj.buscarDNI(obj.getDni());
+    if(pos >= 0){
+        system("cls");
+        itemError("ERROR, CLIENTE EXISTENTE",50,14);
+       itemPause("Presione una tecla para continuar...",50,16);
+       return;
+    }
     if(arcObj.grabarRegistro(obj)){
-        cout << "¡CLIENTE CREADO EXITOSAMENTE!"<<endl;
-        system("pause");
+        item("¡CLIENTE CREADO EXITOSAMENTE!",50,28,false);
+        //cout << "¡CLIENTE CREADO EXITOSAMENTE!"<<endl;
+        itemPause("Presione una tecla para continuar...",50,29);
+        //system("pause");
     }
 }
+
 void eliminarCliente()
-{   int  dni;
+{
+    system("cls");
+    int  dni;
     Cliente obj;
     ArchivoClientes arcObj;
-    cout<<"INGRESE EL DNI DEL CLIENTE A DAR DE BAJA : ";
+    system("cls");
+    item("INGRESE EL DNI DEL CLIENTE A DAR DE BAJA: ", 40,12,false);
+    rlutil::locate(50,13);
+    cout << (char) 175;
+    rlutil::locate(52,13);
     cin>> dni ;
     int pos = arcObj.buscarDNI(dni);
+    if(pos >= 0){
     obj=arcObj.leerRegistro(pos);
     obj.setEstado(false);
     arcObj.modificarCliente(obj,pos);
-    cout<<"EL CLIENTE SE DIO DE BAJA."<<endl;
+    item("¡EL CLIENTE SE DIO DE BAJA EXITOSAMENTE!",50,14,false);
+    itemPause("Presione una tecla para continuar...",50,16);
+    rlutil::anykey();
+    }else{
+        system("cls");
+        itemError("DNI INCORRECTO",50,14);
+        itemPause("Presione una tecla para continuar...",50,16);
+    }
+    //cout<<"¡EL CLIENTE SE DIO DE BAJA EXITOSAMENTE!"<<endl;
     //system("pause");
 
 }
-
+void editarCliente(){
+    system("cls");
+    ArchivoClientes archCli;
+    Cliente cliente;
+    char nombre[15], apellido[15], mail[30];
+    int dni, edad;
+    item("DNI DE CLIENTE A EDITAR: ",40,12,false);
+    //cout<<"DNI DE CLIENTE A EDITAR: ";
+    rlutil::locate(40,13);
+    cin>>dni;
+    int pos = archCli.buscarDNI(dni);
+    if(pos >= 0){
+    cliente = archCli.leerRegistro(pos);
+    int opc = cliente.menuEditar();
+    system("cls");
+    switch(opc){
+    case 1:
+    item("INGRESE EL NUEVO NOMBRE: ",40,12,false);
+    //cout << "INGRESE EL NUEVO NOMBRE: ";
+    rlutil::locate(40,13);
+    cargarCadena(nombre,14);
+    cliente.setNombre(nombre);
+    archCli.modificarCliente(cliente,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,12,false);
+    itemPause("Presione una tecla para continuar...",40,14);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    case 2:
+    item("INGRESE EL NUEVO APELLIDO",40,12,false);
+    //cout << "INGRESE EL NUEVO APELLIDO: ";
+    rlutil::locate(40,13);
+    cargarCadena(apellido,14);
+    cliente.setApellido(apellido);
+    archCli.modificarCliente(cliente,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,12,false);
+    itemPause("Presione una tecla para continuar...",40,14);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    case 3:
+    item("INGRESE EL NUEVO DNI:",40,12,false);
+    //cout << "INGRESE EL NUEVO DNI: ";
+    rlutil::locate(40,13);
+    cin>>dni;
+    cliente.setDni(dni);
+    archCli.modificarCliente(cliente,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,12,false);
+    itemPause("Presione una tecla para continuar...",40,14);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    /*
+    case 4:
+    item("INGRESE LA NUEVA EDAD:",40,12,false);
+    //cout << "INGRESE LA NUEVA EDAD: ";
+    rlutil::locate(40,13);
+    cin >> edad;
+    cliente.setEdad(edad);
+    archCli.modificarCliente(cliente,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,12,false);
+    itemPause("Presione una tecla para continuar...",40,14);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    */
+    case 5:
+    item("INGRESE EL NUEVO MAIL:",40,12,false);
+    //cout << "INGRESE EL NUEVO MAIL: ";
+    rlutil::locate(40,13);
+    cargarCadena(mail,29);
+    cliente.setEmail(mail);
+    archCli.modificarCliente(cliente,pos);
+    item("¡DATOS ACTUALIZADOS EXITOSAMENTE!",40,12,false);
+    itemPause("Presione una tecla para continuar...",40,14);
+    //cout << "¡DATOS ACTUALIZADOS EXITOSAMENTE!"<<endl;
+    //system("pause");
+    break;
+    }
+    }else {
+        item("CLIENTE INEXISTENTE",40,12,false);
+        itemPause("Presione una tecla para continuar...",40,14);
+        //cout << "CLIENTE INEXISTENTE"<<endl;
+        //system("pause");
+    }
+}
 void ArchivoClientes::modificarCliente(Cliente obj, int pos){
     FILE *p=fopen(nombre, "rb+");
     if(p==NULL){return;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    system("pause");
 }
 
 Cliente ArchivoClientes::leerRegistro(int pos){
@@ -121,6 +226,7 @@ void ArchivoClientes::listarArchivo(){
 }
 
 void mostrarClientes(){
+    system("cls");
     ArchivoClientes archCli;
     archCli.listarArchivo();
     system("pause");
@@ -129,21 +235,28 @@ void mostrarClientes(){
 
 
 void mostrarCliente(){
+    system("cls");
     int pos;
     ArchivoClientes archCli;
     Cliente obj;
     int dni;
-    cout << "INGRESE EL DNI DEL CLIENTE : "<<endl;
+    item("INGRESE EL DNI DEL CLIENTE:",40,12,false);
+    //cout << "INGRESE EL DNI DEL CLIENTE : "<<endl;
+    rlutil::locate(40,13);
     cin>> dni;
+    system("cls");
     pos =  archCli.buscarDNI(dni);
-    if(pos >= 0){
-        obj = archCli.leerRegistro(pos);
+    obj = archCli.leerRegistro(pos);
+    if(pos >= 0 && obj.getEstado()){
+
         obj.Mostrar();
-        cout<<"cli"<<endl;
-        system("pause");
+        cout<<endl;
+        itemPause("Presione una tecla para continuar...",40,30);
 
     }else{
-        cout << "NO SE ENCONTRÓ CLIENTE CON ESE DNI"<<endl;
+       // cout << "NO SE ENCONTRÓ CLIENTE CON ESE DNI"<<endl;
+        item("NO SE ENCONTRO CLIENTE CON ESE DNI",40,14,false);
+        itemPause("Presione una tecla para continuar...",40,30);
     }
 }
 

@@ -1,7 +1,71 @@
 #ifndef MENUDESTINOS_H_INCLUDED
 #define MENUDESTINOS_H_INCLUDED
+void menuDestinos(){
+int op = 1, y = 0;
+  rlutil::hidecursor();
+    do{
+        system("cls");
+        titulo("                    DESTINOS                  ", 40,2);
+        item("ALTA DESTINO", 50,8, y == 0);
+        item("MODIFICAR DESTINO", 50,9, y == 1);
+        item("BAJA DESTINO", 50,10, y == 2);
+        item("BUSCAR DESTINO", 50,11, y == 3);
+        item("LISTAR DESTINOS", 50,12, y == 4);
+        item("VOLVER AL MENU PRINCIPAL", 50,13, y == 5);
 
+        rlutil::locate(48,8 + y);
+        cout << (char) 175 <<endl;
 
+        int key = rlutil::getkey();
+
+        switch(key){
+            case 14: /// UP
+            rlutil::locate(48,8 + y);
+            cout << " " <<endl;
+            y--;
+            if(y < 0){
+                y = 0;
+            }
+            break;
+            case 15: /// DOWN
+            rlutil::locate(48,8 + y);
+            cout << " " <<endl;
+            y++;
+            if(y > 5){
+                y = 5;
+            }
+            break;
+            case 1: /// ENTER
+
+                switch(y){
+                case 0:
+                    altaDestino();
+                    break;
+                case 1:
+                    editarDestino();
+                    break;
+                case 2:
+                    bajaDestino();
+                    break;
+                case 3:
+                    buscarDestino();
+                    break;
+                case 4:
+                    mostrarDestinos();
+                    break;
+                case 5:
+                        op = 0;
+                    break;
+                }
+
+                break;
+        default:
+            break;
+        }
+
+        }while(op != 0);
+}
+/*
 void menuDestinos(){
     int opc;
     while(true){
@@ -43,4 +107,5 @@ void menuDestinos(){
         }
     }
 }
+*/
 #endif // MENUDESTINOS_H_INCLUDED

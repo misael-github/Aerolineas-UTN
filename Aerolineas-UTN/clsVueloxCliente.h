@@ -1,15 +1,26 @@
 #ifndef CLSVUELOXCLIENTE_H_INCLUDED
 #define CLSVUELOXCLIENTE_H_INCLUDED
+/*
+class VueloxCliente : public Vuelo{
+private:
+    int _dni;
+public:
+    int getDni(){return _dni;}
+    void setDni(int d){_dni = d;}
+};
+*/
 
-class VuelosxCliente
+
+class VueloxCliente
 {
 private:
     int _dni;
-    int _NumAsiento;
-    Fecha _fecha;
+    //int _NumAsiento;
     int _codigoVuelo;
+    Fecha _fecha;
     Destino _destino;
     float _precio;
+    //int _cantidadAsientos;
     bool estado;
 public:
     void setDni(int dni)
@@ -32,7 +43,9 @@ public:
     {
         _precio = pre;
     }
-
+   // void setCantidadAsientos(int asientos){
+    //    _cantidadAsientos  = asientos;
+    //}
     float getPrecio()
     {
         return _precio;
@@ -57,10 +70,15 @@ public:
     {
         return _destino;
     }
+    /*
+    int getCantidadAsientos(){
+        return _cantidadAsientos;
+    }
+    */
     void Mostrar();
 };
 
-void VuelosxCliente::Mostrar(){
+void VueloxCliente::Mostrar(){
     cout << "DNI: "<<_dni<<endl;
     cout << "CODIGO DE VUELO: "<<_codigoVuelo<<endl;
     cout << "FECHA: "<<_fecha.getDia()<<"/"<<_fecha.getMes()<<"/"<<_fecha.getAnio()<<endl;
